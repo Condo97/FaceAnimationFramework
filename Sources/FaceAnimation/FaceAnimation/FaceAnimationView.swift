@@ -47,11 +47,11 @@ open class FaceAnimationView: UIView {
     convenience public init(frame: CGRect, faceImageName: String) {
         self.init(frame: frame)
         self.faceImageName = faceImageName
+        drawFace()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        drawFace()
 //        setupAnimations()
 //        subscribeToAnimationGroupNotify()
     }

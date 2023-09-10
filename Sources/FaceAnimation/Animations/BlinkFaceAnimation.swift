@@ -22,4 +22,8 @@ public struct BlinkFaceAnimation: FaceAnimation {
     public var backgroundAnimation: FacialFeatureAnimation?
     
     public var duration: CFTimeInterval = 0.2
+    
+    public init() {
+        
+    }
 }

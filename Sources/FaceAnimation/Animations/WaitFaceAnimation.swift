@@ -18,7 +18,7 @@ public struct WaitFaceAnimation: FaceAnimation {
     
     public var duration: CFTimeInterval
     
-    init(duration: CFTimeInterval) {
+    public init(duration: CFTimeInterval) {
         self.duration = duration
     }
 }

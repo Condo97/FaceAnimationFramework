@@ -10,6 +10,8 @@ import UIKit
 
 open class FaceAnimationView: UIView {
     
+    public var faceImageName: String?
+    
     private let DEFAULT_BLINK_MIN_X_SCALE = 0.8
     private let DEFAULT_BLINK_MIN_Y_SCALE = 0.2
     
@@ -42,7 +44,12 @@ open class FaceAnimationView: UIView {
     private var idleAnimations: [FaceAnimation] = []
     private var interruptAnimations: [FaceAnimation]?
     
-    override public init(frame: CGRect) {
+    public init(frame: CGRect, faceImageName: String) {
+        self.faceImageName = faceImageName
+        super.init(frame: frame)
+    }
+    
+    override init(frame: CGRect) {
         super.init(frame: frame)
         drawFace()
 //        setupAnimations()
@@ -117,7 +124,7 @@ open class FaceAnimationView: UIView {
             
             Thread.sleep(forTimeInterval: faceAnimation.duration)
         }
-            
+        
         // Subscribe to animation group notify
         subscribeToAnimationGroupNotify()
     }
@@ -220,7 +227,7 @@ open class FaceAnimationView: UIView {
         mouthShapeLayer.lineWidth = 8.0
         mouthShapeLayer.lineCap = .round
         
-        backgroundFaceImage = UIImage(named: "face_background")
+        backgroundFaceImage = UIImage(named: faceImageName!)
         backgroundFaceLayer = CALayer()
         backgroundFaceLayer.frame = CGRect(x: 150.0, y: 150.0, width: 300, height: 300)
         backgroundFaceLayer.position = CGPoint(x: 0.0, y: 0.0)

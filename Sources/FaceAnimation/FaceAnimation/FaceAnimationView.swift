@@ -44,9 +44,9 @@ open class FaceAnimationView: UIView {
     private var idleAnimations: [FaceAnimation] = []
     private var interruptAnimations: [FaceAnimation]?
     
-    public init(frame: CGRect, faceImageName: String) {
+    convenience public init(frame: CGRect, faceImageName: String) {
         self.faceImageName = faceImageName
-        super.init(frame: frame)
+        self.init(frame: frame)
     }
     
     override init(frame: CGRect) {

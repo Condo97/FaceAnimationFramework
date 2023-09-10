@@ -7,19 +7,19 @@
 
 import Foundation
 
-struct BlinkFaceAnimation: FaceAnimation {
-    struct EyesAnimation: BlinkAnimation {
-        var blinkMinXScale: CGFloat?
-        var blinkMinYScale: CGFloat?
+public struct BlinkFaceAnimation: FaceAnimation {
+    public struct EyesAnimation: BlinkAnimation {
+        public var blinkMinXScale: CGFloat?
+        public var blinkMinYScale: CGFloat?
     }
     
-    var eyebrowsAnimation: FacialFeatureAnimation?
-    var eyebrowsPosition: EyebrowsPositions?
-    var eyesAnimation: FacialFeatureAnimation? = EyesAnimation()
-    var noseAnimation: FacialFeatureAnimation?
-    var mouthAnimation: FacialFeatureAnimation?
-    var mouthPosition: MouthPositions?
-    var backgroundAnimation: FacialFeatureAnimation?
+    public var eyebrowsAnimation: FacialFeatureAnimation?
+    public var eyebrowsPosition: EyebrowsPositions?
+    public var eyesAnimation: FacialFeatureAnimation? = EyesAnimation()
+    public var noseAnimation: FacialFeatureAnimation?
+    public var mouthAnimation: FacialFeatureAnimation?
+    public var mouthPosition: MouthPositions?
+    public var backgroundAnimation: FacialFeatureAnimation?
     
-    var duration: CFTimeInterval = 0.2
+    public var duration: CFTimeInterval = 0.2
 }

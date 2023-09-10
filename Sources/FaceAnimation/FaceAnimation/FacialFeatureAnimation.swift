@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol FacialFeatureAnimation {
+public protocol FacialFeatureAnimation {
     
 }

@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum MouthPositions: LineAnimation {
+public enum MouthPositions: LineAnimation {
     
     case smile
     case neutral
     case thinking
     case frown
     
-    var linePosition: CGPoint {
+    public var linePosition: CGPoint {
         switch(self) {
         case .smile: return CGPoint(x: 114, y: 224)
         case .neutral: return CGPoint(x: 122, y: 228)
@@ -23,7 +23,7 @@ enum MouthPositions: LineAnimation {
         }
     }
     
-    var quadCurvePoint: CGPoint {
+    public var quadCurvePoint: CGPoint {
         switch(self) {
         case .smile: return CGPoint(x: 186, y: 224)
         case .neutral: return CGPoint(x: 178, y: 228)
@@ -32,7 +32,7 @@ enum MouthPositions: LineAnimation {
         }
     }
     
-    var quadCurveControlPoint: CGPoint {
+    public var quadCurveControlPoint: CGPoint {
         switch(self) {
         case .smile: return CGPoint(x: 150, y: 232)
         case .neutral: return CGPoint(x: 150, y: 232)

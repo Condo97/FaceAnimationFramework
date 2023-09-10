@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class FaceAnimationView: UIView {
+open class FaceAnimationView: UIView {
     
     private let DEFAULT_BLINK_MIN_X_SCALE = 0.8
     private let DEFAULT_BLINK_MIN_Y_SCALE = 0.2
@@ -49,7 +49,7 @@ class FaceAnimationView: UIView {
 //        subscribeToAnimationGroupNotify()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     

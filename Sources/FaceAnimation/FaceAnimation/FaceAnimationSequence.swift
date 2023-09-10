@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol FaceAnimationSequence {
+public protocol FaceAnimationSequence {
     var animations: [FaceAnimation] { get set }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol LineAnimation: FacialFeatureAnimation {
+public protocol LineAnimation: FacialFeatureAnimation {
     var linePosition: CGPoint { get }
     var quadCurvePoint: CGPoint { get }
     var quadCurveControlPoint: CGPoint { get }

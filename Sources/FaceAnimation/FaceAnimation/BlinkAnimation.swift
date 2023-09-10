@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol BlinkAnimation: FacialFeatureAnimation {
+public protocol BlinkAnimation: FacialFeatureAnimation {
     var blinkMinXScale: CGFloat? { get }
     var blinkMinYScale: CGFloat? { get }
 }

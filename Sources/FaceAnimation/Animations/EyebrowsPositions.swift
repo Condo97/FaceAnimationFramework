@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum EyebrowsPositions {
+public enum EyebrowsPositions {
     
     case dismissed
     case rightRaised
@@ -17,7 +17,7 @@ enum EyebrowsPositions {
     private static let loweredEyebrowPosition = CGPoint(x: 0, y: 0)
     private static let raisedEyebrowPosition = CGPoint(x: 0, y: -40)
     
-    var opacity: Float {
+    public var opacity: Float {
         if self == .dismissed {
             return 0.0
         }
@@ -25,7 +25,7 @@ enum EyebrowsPositions {
         return 1.0
     }
     
-    var leftEyebrowPosition: CGPoint {
+    public var leftEyebrowPosition: CGPoint {
         switch(self) {
         case .dismissed:
             return EyebrowsPositions.raisedEyebrowPosition
@@ -38,7 +38,7 @@ enum EyebrowsPositions {
         }
     }
     
-    var rightEyebrowPosition: CGPoint {
+    public var rightEyebrowPosition: CGPoint {
         switch(self) {
         case .dismissed:
             return EyebrowsPositions.raisedEyebrowPosition
@@ -51,11 +51,11 @@ enum EyebrowsPositions {
         }
     }
     
-    func getLeftEyebrowAnimation() -> MoveAnimation & OpacityAnimation {
+    public func getLeftEyebrowAnimation() -> MoveAnimation & OpacityAnimation {
         getEyebrowAnimation(eyebrowsPosition: self.leftEyebrowPosition, targetOpacity: self.opacity)
     }
     
-    func getRightEyebrowAnimation() -> MoveAnimation & OpacityAnimation {
+    public func getRightEyebrowAnimation() -> MoveAnimation & OpacityAnimation {
         getEyebrowAnimation(eyebrowsPosition: self.rightEyebrowPosition, targetOpacity: self.opacity)
     }
     

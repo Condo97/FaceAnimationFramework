@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol MoveAnimation: FacialFeatureAnimation {
+public protocol MoveAnimation: FacialFeatureAnimation {
     var moveToPosition: CGPoint { get }
 }

@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct WaitFaceAnimation: FaceAnimation {
-    var eyebrowsAnimation: FacialFeatureAnimation?
-    var eyebrowsPosition: EyebrowsPositions?
-    var eyesAnimation: FacialFeatureAnimation?
-    var noseAnimation: FacialFeatureAnimation?
-    var mouthAnimation: FacialFeatureAnimation?
-    var mouthPosition: MouthPositions?
-    var backgroundAnimation: FacialFeatureAnimation?
+public struct WaitFaceAnimation: FaceAnimation {
+    public var eyebrowsAnimation: FacialFeatureAnimation?
+    public var eyebrowsPosition: EyebrowsPositions?
+    public var eyesAnimation: FacialFeatureAnimation?
+    public var noseAnimation: FacialFeatureAnimation?
+    public var mouthAnimation: FacialFeatureAnimation?
+    public var mouthPosition: MouthPositions?
+    public var backgroundAnimation: FacialFeatureAnimation?
     
-    var duration: CFTimeInterval
+    public var duration: CFTimeInterval
     
     init(duration: CFTimeInterval) {
         self.duration = duration

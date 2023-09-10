@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol FaceAnimation {
+public protocol FaceAnimation {
     var eyebrowsAnimation: FacialFeatureAnimation? { get set }
     var eyebrowsPosition: EyebrowsPositions? { get set }
     var eyesAnimation: FacialFeatureAnimation? { get set }

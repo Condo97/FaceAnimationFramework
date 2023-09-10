@@ -172,7 +172,7 @@ open class FaceAnimationView: UIView {
         
         let rightEyebrowShapeLayerPath = UIBezierPath()
         rightEyebrowShapeLayerPath.move(to: CGPoint(x: self.frame.width * 91 / 150, y: self.frame.height * 13 / 30))
-        rightEyebrowShapeLayerPath.addQuadCurve(to: CGPoint(x: self.frame.width * 53 / 75, y: self.frame.height * 13 / 30), controlPoint: CGPoint(x: self.frame.width * 197 / 300, y: eslf.frame.height * 32 / 75))
+        rightEyebrowShapeLayerPath.addQuadCurve(to: CGPoint(x: self.frame.width * 53 / 75, y: self.frame.height * 13 / 30), controlPoint: CGPoint(x: self.frame.width * 197 / 300, y: self.frame.height * 32 / 75))
         
         rightEyebrowShapeLayer = CAShapeLayer()
         rightEyebrowShapeLayer.path = rightEyebrowShapeLayerPath.cgPath

@@ -21,7 +21,5 @@ public struct BlinkFaceAnimation: FaceAnimation {
     public var mouthPosition: MouthPositions?
     public var backgroundAnimation: FacialFeatureAnimation?
     
-    public var asdf: Int
-    
     public var duration: CFTimeInterval = 0.2
 }

@@ -45,6 +45,7 @@ open class FaceAnimationView: UIView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         drawFace()
+        print("asdf")
 //        setupAnimations()
 //        subscribeToAnimationGroupNotify()
     }

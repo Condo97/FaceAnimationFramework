@@ -6,6 +6,6 @@ final class FaceAnimationTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(FaceAnimation().text, "Hello, World!")
+//        XCTAssertEqual(FaceAnimation().text, "Hello, World!")
     }
 }

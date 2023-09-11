@@ -116,7 +116,6 @@ open class FaceAnimationView: UIView {
         mouthShapeLayer.lineCap = .round
         
         backgroundFaceImage = UIImage(named: faceImageName!)
-        backgroundFaceLayer = CALayer()
         backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
         backgroundFaceLayer.position = CGPoint(x: 0.0, y: 0.0)
         backgroundFaceLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
@@ -243,6 +242,8 @@ open class FaceAnimationView: UIView {
         
         originalMouthPath = UIBezierPath()
         mouthShapeLayer = CAShapeLayer()
+        
+        backgroundFaceLayer = CALayer()
         
         fullFaceLayer = CALayer()
         

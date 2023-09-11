@@ -13,7 +13,7 @@ fileprivate struct Move: MoveAnimation {
 
 protocol FullFaceMoveAnimation: FaceAnimation {
     
-    var moveToPosition: CGPoint { get set }
+    var moveToPosition: CGPoint { get }
     
 }
 

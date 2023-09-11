@@ -319,7 +319,7 @@ open class FaceAnimationView: UIView {
         if let moveAnimation = facialFeatureAnimation as? MoveAnimation {
             let animation = CAKeyframeAnimation(keyPath: "position")
             animation.duration = duration
-             
+            
             animation.values = [layer.position, moveAnimation.moveToPosition]
             animation.keyTimes = [0, 1]
             animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)

@@ -11,13 +11,13 @@ fileprivate struct Move: MoveAnimation {
     var moveToPosition: CGPoint
 }
 
-protocol FullFaceMoveAnimation: FaceAnimation {
+public protocol FullFaceMoveAnimation: FaceAnimation {
     
     var moveToPosition: CGPoint { get }
     
 }
 
-extension FullFaceMoveAnimation {
+public extension FullFaceMoveAnimation {
     
     var eyebrowsAnimation: FacialFeatureAnimation? {
         Move(moveToPosition: moveToPosition)

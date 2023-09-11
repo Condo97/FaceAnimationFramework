@@ -14,8 +14,8 @@ fileprivate struct MoveCurve: MoveCurveAnimation {
 
 public protocol FullFaceMoveCurveAnimation: FaceAnimation {
     
-    var moveToQuadCurvePoint: CGPoint { get set }
-    var moveToQuadCurveControlPoint: CGPoint { get set }
+    var moveToQuadCurvePoint: CGPoint { get }
+    var moveToQuadCurveControlPoint: CGPoint { get }
     
 }
 

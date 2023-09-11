@@ -334,14 +334,14 @@ open class FaceAnimationView: UIView {
             let animation = CAKeyframeAnimation(keyPath: "path")
             animation.duration = duration
             
-            let path = UIBezierPath()
-            path.move(to: lineAnimation.getLinePosition(width: frame.width, height: frame.height))
-            path.addQuadCurve(to: lineAnimation.getQuadCurvePoint(width: frame.width, height: frame.height), controlPoint: lineAnimation.getQuadCurveControlPoint(width: frame.width, height: frame.height))
-            
-            animation.values = [shapeLayer.path!, path.cgPath]
-            animation.keyTimes = [0, 1]
-            
             DispatchQueue.main.async {
+                let path = UIBezierPath()
+                path.move(to: lineAnimation.getLinePosition(width: self.frame.width, height: self.frame.height))
+                path.addQuadCurve(to: lineAnimation.getQuadCurvePoint(width: self.frame.width, height: self.frame.height), controlPoint: lineAnimation.getQuadCurveControlPoint(width: self.frame.width, height: self.frame.height))
+                
+                animation.values = [shapeLayer.path!, path.cgPath]
+                animation.keyTimes = [0, 1]
+            
                 shapeLayer.path = path.cgPath
                 shapeLayer.add(animation, forKey: nil)
             }

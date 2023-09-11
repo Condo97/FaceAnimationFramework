@@ -19,7 +19,7 @@ public protocol FullFaceMoveCurveAnimation: FaceAnimation {
     
 }
 
-extension FullFaceMoveCurveAnimation {
+public extension FullFaceMoveCurveAnimation {
     
     var eyebrowsAnimation: FacialFeatureAnimation? {
         MoveCurve(moveToQuadCurvePoint: moveToQuadCurvePoint, moveToQuadCurveControlPoint: moveToQuadCurveControlPoint)

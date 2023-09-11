@@ -121,6 +121,7 @@ open class FaceAnimationView: UIView {
         backgroundFaceLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
 //        backgroundFaceLayer.path = originalBackgroundFacePath.cgPath
         backgroundFaceLayer.contents = backgroundFaceImage.cgImage
+        backgroundFaceLayer.backgroundColor = self.tintColor.cgColor
         
     }
     

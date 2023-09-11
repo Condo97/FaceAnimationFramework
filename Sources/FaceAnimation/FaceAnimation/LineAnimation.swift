@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol LineAnimation: FacialFeatureAnimation {
-    var linePosition: CGPoint { get }
-    var quadCurvePoint: CGPoint { get }
-    var quadCurveControlPoint: CGPoint { get }
+    func getLinePosition(width: CGFloat, height: CGFloat) -> CGPoint
+    func getQuadCurvePoint(width: CGFloat, height: CGFloat) -> CGPoint
+    func getQuadCurveControlPoint(width: CGFloat, height: CGFloat) -> CGPoint
 }

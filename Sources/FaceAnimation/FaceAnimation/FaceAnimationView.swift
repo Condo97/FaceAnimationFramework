@@ -335,8 +335,8 @@ open class FaceAnimationView: UIView {
             animation.duration = duration
             
             let path = UIBezierPath()
-            path.move(to: lineAnimation.linePosition)
-            path.addQuadCurve(to: lineAnimation.quadCurvePoint, controlPoint: lineAnimation.quadCurveControlPoint)
+            path.move(to: lineAnimation.getLinePosition(width: frame.width, height: frame.height))
+            path.addQuadCurve(to: lineAnimation.getQuadCurvePoint(width: frame.width, height: frame.height), controlPoint: lineAnimation.getQuadCurveControlPoint(width: frame.width, height: frame.height))
             
             animation.values = [shapeLayer.path!, path.cgPath]
             animation.keyTimes = [0, 1]

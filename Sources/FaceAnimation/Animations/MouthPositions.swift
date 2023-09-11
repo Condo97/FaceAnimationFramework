@@ -14,57 +14,30 @@ public enum MouthPositions: LineAnimation {
     case thinking
     case frown
     
-    public var linePosition: CGPoint {
+    public func getLinePosition(width: CGFloat, height: CGFloat) -> CGPoint {
         switch(self) {
-        case .smile: return CGPoint(x: -36, y: 74)
-        case .neutral: return CGPoint(x: -28, y: 78)
-        case .frown: return CGPoint(x: -32, y: 78)
-        case .thinking: return CGPoint(x: -26, y: 76)
+        case .smile: return CGPoint(x: width * 19 / 50, y: height * 56 / 75)
+        case .neutral: return CGPoint(x: width * 61 / 150, y: height * 19 / 25)
+        case .frown: return CGPoint(x: width * 59 / 150, y: height * 19 / 25)
+        case .thinking: return CGPoint(x: width * 31 / 75, y: height * 113 / 150)
         }
     }
 
-    public var quadCurvePoint: CGPoint {
+    public func getQuadCurvePoint(width: CGFloat, height: CGFloat) -> CGPoint {
         switch(self) {
-        case .smile: return CGPoint(x: 36, y: 74)
-        case .neutral: return CGPoint(x: 28, y: 78)
-        case .frown: return CGPoint(x: 32, y: 78)
-        case .thinking: return CGPoint(x: 26, y: 76)
+        case .smile: return CGPoint(x: width * 31 / 50, y: height * 56 / 75)
+        case .neutral: return CGPoint(x: width * 89 / 150, y: height * 19 / 25)
+        case .frown: return CGPoint(x: width * 91 / 150, y: height * 19 / 25)
+        case .thinking: return CGPoint(x: width * 44 / 75, y: height * 113 / 150)
         }
     }
-    
-    public var quadCurveControlPoint: CGPoint {
+
+    public func getQuadCurveControlPoint(width: CGFloat, height: CGFloat) -> CGPoint {
         switch(self) {
-        case .smile: return CGPoint(x: 0, y: 82)
-        case .neutral: return CGPoint(x: 0, y: 82)
-        case .frown: return CGPoint(x: 0, y: 80)
-        case .thinking: return CGPoint(x: 20, y: 74)
+        case .smile: return CGPoint(x: width * 1 / 2, y: height * 58 / 75)
+        case .neutral: return CGPoint(x: width * 1 / 2, y: height * 58 / 75)
+        case .frown: return CGPoint(x: width * 1 / 2, y: height * 23 / 30)
+        case .thinking: return CGPoint(x: width * 17 / 30, y: height * 56 / 75)
         }
     }
-    
-//    public var linePosition: CGPoint {
-//        switch(self) {
-//        case .smile: return CGPoint(x: 114, y: 224)
-//        case .neutral: return CGPoint(x: 122, y: 228)
-//        case .frown: return CGPoint(x: 118, y: 228)
-//        case .thinking: return CGPoint(x: 124, y: 226)
-//        }
-//    }
-//
-//    public var quadCurvePoint: CGPoint {
-//        switch(self) {
-//        case .smile: return CGPoint(x: 186, y: 224)
-//        case .neutral: return CGPoint(x: 178, y: 228)
-//        case .frown: return CGPoint(x: 182, y: 228)
-//        case .thinking: return CGPoint(x: 176, y: 226)
-//        }
-//    }
-//
-//    public var quadCurveControlPoint: CGPoint {
-//        switch(self) {
-//        case .smile: return CGPoint(x: 150, y: 232)
-//        case .neutral: return CGPoint(x: 150, y: 232)
-//        case .frown: return CGPoint(x: 150, y: 230)
-//        case .thinking: return CGPoint(x: 170, y: 224)
-//        }
-//    }
 }

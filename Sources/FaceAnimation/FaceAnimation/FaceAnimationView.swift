@@ -115,13 +115,12 @@ open class FaceAnimationView: UIView {
         mouthShapeLayer.lineWidth = self.frame.width * 2 / 75
         mouthShapeLayer.lineCap = .round
         
-        backgroundFaceImage = UIImage(named: faceImageName!)
+        backgroundFaceImage = UIImage(named: faceImageName!)?.withTintColor(self.tintColor)
         backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
         backgroundFaceLayer.position = CGPoint(x: 0.0, y: 0.0)
         backgroundFaceLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
 //        backgroundFaceLayer.path = originalBackgroundFacePath.cgPath
         backgroundFaceLayer.contents = backgroundFaceImage.cgImage
-        backgroundFaceLayer.backgroundColor = self.tintColor.cgColor
         
     }
     

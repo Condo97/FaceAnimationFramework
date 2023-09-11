@@ -16,7 +16,7 @@ public enum MouthPositions: LineAnimation {
     
     public func getLinePosition(width: CGFloat, height: CGFloat) -> CGPoint {
         switch(self) {
-        case .smile: return CGPoint(x: -2/*width * 19 / 50*/, y: height * 56 / 75)
+        case .smile: return CGPoint(x: width * 19 / 50, y: height * 56 / 75)
         case .neutral: return CGPoint(x: width * 61 / 150, y: height * 19 / 25)
         case .frown: return CGPoint(x: width * 59 / 150, y: height * 19 / 25)
         case .thinking: return CGPoint(x: width * 31 / 75, y: height * 113 / 150)

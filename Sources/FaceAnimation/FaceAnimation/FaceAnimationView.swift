@@ -202,7 +202,12 @@ open class FaceAnimationView: UIView {
         subscribeToAnimationGroupNotify()
     }
     
-    public func setIdleAnimations(_ faceAnimations: [FaceAnimation]) {
+    public func setIdleAnimations(_ faceAnimations: [FaceAnimation], shouldInterrupt: Bool = true) {
+        // If shouldInterrupt and isRunning, set shouldEmptyQueue to interrupt
+        if shouldInterrupt && isRunning {
+            shouldEmptyQueue = true
+        }
+        
         // Set idle animations
         idleAnimations = faceAnimations
         

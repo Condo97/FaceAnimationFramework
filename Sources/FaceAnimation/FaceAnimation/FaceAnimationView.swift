@@ -44,10 +44,14 @@ open class FaceAnimationView: UIView {
     private var idleAnimations: [FaceAnimation] = []
     private var interruptAnimations: [FaceAnimation]?
     
-    convenience public init(frame: CGRect, faceImageName: String) {
+    convenience public init(frame: CGRect, faceImageName: String, startPositionAnimation: FaceAnimation? = nil) {
         self.init(frame: frame)
         self.faceImageName = faceImageName
         setupFaceLayers()
+        
+        if let startPositionAnimation = startPositionAnimation {
+            setStartPositionAnimation(startPositionAnimation)
+        }
     }
     
     override init(frame: CGRect) {
@@ -136,7 +140,7 @@ open class FaceAnimationView: UIView {
         }
     }
     
-    public func async(faceAnimation: FaceAnimation) {
+    private func async(faceAnimation: FaceAnimation) {
         // Animate eyes, nose, mouth, and background
         if let eyebrowsAnimation = faceAnimation.eyebrowsAnimation {
             self.animate(facialFeatureAnimation: eyebrowsAnimation, layer: self.eyebrowsLayer, duration: faceAnimation.duration)
@@ -269,6 +273,12 @@ open class FaceAnimationView: UIView {
         
         // Queue the idle animations
         queueInterruptAndIdleAnimations()
+    }
+    
+    private func setStartPositionAnimation(_ startPositionAnimation: FaceAnimation) {
+        UIView.performWithoutAnimation {
+            async(faceAnimation: startPositionAnimation)
+        }
     }
     
     private func queueInterruptAndIdleAnimations() {

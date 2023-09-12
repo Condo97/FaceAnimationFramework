@@ -44,13 +44,13 @@ open class FaceAnimationView: UIView {
     private var idleAnimations: [FaceAnimation] = []
     private var interruptAnimations: [FaceAnimation]?
     
-    convenience public init(frame: CGRect, faceImageName: String, startPositionAnimation: FaceAnimation? = nil) {
+    convenience public init(frame: CGRect, faceImageName: String, startAnimation: FaceAnimation? = nil) {
         self.init(frame: frame)
         self.faceImageName = faceImageName
         setupFaceLayers()
         
-        if let startPositionAnimation = startPositionAnimation {
-            setStartPositionAnimation(startPositionAnimation)
+        if let startAnimation = startAnimation {
+            self.queue(faceAnimation: startAnimation)
         }
     }
     
@@ -273,12 +273,6 @@ open class FaceAnimationView: UIView {
         
         // Queue the idle animations
         queueInterruptAndIdleAnimations()
-    }
-    
-    private func setStartPositionAnimation(_ startPositionAnimation: FaceAnimation) {
-        UIView.performWithoutAnimation {
-            async(faceAnimation: startPositionAnimation)
-        }
     }
     
     private func queueInterruptAndIdleAnimations() {

@@ -34,7 +34,7 @@ public enum MouthPositions: LineAnimation {
 
     public func getQuadCurveControlPoint(width: CGFloat, height: CGFloat) -> CGPoint {
         switch(self) {
-        case .smile: return CGPoint(x: width * 1 / 2, y: height * 19 / 25)
+        case .smile: return CGPoint(x: width * 1 / 2, y: height * 4 / 5)
         case .neutral: return CGPoint(x: width * 1 / 2, y: height * 58 / 75)
         case .frown: return CGPoint(x: width * 1 / 2, y: height * 23 / 30)
         case .thinking: return CGPoint(x: width * 17 / 30, y: height * 56 / 75)

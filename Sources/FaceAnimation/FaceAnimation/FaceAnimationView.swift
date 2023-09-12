@@ -193,8 +193,15 @@ open class FaceAnimationView: UIView {
     public func queue(faceAnimation: FaceAnimation) {
         // Add faceAnimation to animationsQueue
         animationsQueue.async(group: animationGroup) {
+            // Ensure shouldEmptyQueue is false, otherwise return to prevent delays when emptying queue
+            guard !self.shouldEmptyQueue else {
+                return
+            }
+            
+            // Call async in the queue to queue the animation
             self.async(faceAnimation: faceAnimation)
             
+            // Sleep for the duration of the animation to allow the animation to complete before proceeding
             Thread.sleep(forTimeInterval: faceAnimation.duration)
         }
         
@@ -317,10 +324,6 @@ open class FaceAnimationView: UIView {
     }
     
     private func animate(facialFeatureAnimation: FacialFeatureAnimation, layer: CALayer, duration: CFTimeInterval) {
-        guard !shouldEmptyQueue else {
-            return
-        }
-        
         if let moveCurveAnimation = facialFeatureAnimation as? MoveCurveAnimation {
             let animation = CAKeyframeAnimation(keyPath: "position")
             animation.duration = duration

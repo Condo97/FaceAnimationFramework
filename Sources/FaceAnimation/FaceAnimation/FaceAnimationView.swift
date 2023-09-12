@@ -104,7 +104,6 @@ open class FaceAnimationView: UIView {
             backgroundFaceImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: backgroundFaceImageSize))
         }
         
-//        backgroundFaceLayer.path = originalBackgroundFacePath.cgPath
         backgroundFaceLayer.contents = tintedBackgroundFaceImage.cgImage
         
     }
@@ -286,6 +285,7 @@ open class FaceAnimationView: UIView {
         backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
         backgroundFaceLayer.position = CGPoint(x: 0.0, y: 0.0)
         backgroundFaceLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+//        backgroundFaceLayer.path = originalBackgroundFacePath.cgPath
     }
     
     private func start() {

@@ -210,13 +210,13 @@ open class FaceAnimationView: UIView {
     }
     
     public func setIdleAnimations(_ faceAnimations: [FaceAnimation], shouldInterrupt: Bool = true) {
+        // Set idle animations
+        idleAnimations = faceAnimations
+        
         // If shouldInterrupt and isRunning, set shouldEmptyQueue to interrupt
         if shouldInterrupt && isRunning {
             shouldEmptyQueue = true
         }
-        
-        // Set idle animations
-        idleAnimations = faceAnimations
         
         // Call start which will start running interrupt and idle animations if it needs to
         start()

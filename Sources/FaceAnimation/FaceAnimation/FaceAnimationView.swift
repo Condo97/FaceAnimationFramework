@@ -140,7 +140,7 @@ open class FaceAnimationView: UIView {
         }
     }
     
-    private func async(faceAnimation: FaceAnimation) {
+    public func async(faceAnimation: FaceAnimation) {
         // Animate eyes, nose, mouth, and background
         if let eyebrowsAnimation = faceAnimation.eyebrowsAnimation {
             self.animate(facialFeatureAnimation: eyebrowsAnimation, layer: self.eyebrowsLayer, duration: faceAnimation.duration)

@@ -15,7 +15,7 @@ public enum EyebrowsPositions {
     case lowered
     
     private static let loweredEyebrowPosition = CGPoint(x: 0, y: 0)
-    private static let raisedEyebrowPosition = CGPoint(x: 0, y: -15)
+    private static let raisedEyebrowPosition = CGPoint(x: 0, y: -5)
     
     public var opacity: Float {
         if self == .dismissed {

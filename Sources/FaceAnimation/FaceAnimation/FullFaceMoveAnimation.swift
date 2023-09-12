@@ -33,7 +33,7 @@ public extension FullFaceMoveAnimation {
     }
     
     var mouthAnimation: FacialFeatureAnimation? {
-        let newMoveToPosition = CGPoint(x: moveToPosition.x / 2, y: moveToPosition.y / 2)
+        let newMoveToPosition = CGPoint(x: moveToPosition.x / 4, y: moveToPosition.y / 4)
         return Move(moveToPosition: newMoveToPosition)
     }
     

@@ -16,7 +16,7 @@ public enum MouthPositions: LineAnimation {
     
     public func getLinePosition(width: CGFloat, height: CGFloat) -> CGPoint {
         switch(self) {
-        case .smile: return CGPoint(x: width * 19 / 50, y: height * 56 / 75)
+        case .smile: return CGPoint(x: width * 2 / 5, y: height * 56 / 75)
         case .neutral: return CGPoint(x: width * 61 / 150, y: height * 19 / 25)
         case .frown: return CGPoint(x: width * 59 / 150, y: height * 19 / 25)
         case .thinking: return CGPoint(x: width * 31 / 75, y: height * 113 / 150)
@@ -25,10 +25,10 @@ public enum MouthPositions: LineAnimation {
 
     public func getQuadCurvePoint(width: CGFloat, height: CGFloat) -> CGPoint {
         switch(self) {
-        case .smile: return CGPoint(x: width * 31 / 50, y: height * 56 / 75)
+        case .smile: return CGPoint(x: width * 3 / 5, y: height * 56 / 75)
         case .neutral: return CGPoint(x: width * 89 / 150, y: height * 19 / 25)
         case .frown: return CGPoint(x: width * 91 / 150, y: height * 19 / 25)
-        case .thinking: return CGPoint(x: width * 44 / 75, y: height * 113 / 150)
+        case .thinking: return CGPoint(x: width * 44 / 75, y: height * 56 / 75)
         }
     }
 
@@ -37,7 +37,7 @@ public enum MouthPositions: LineAnimation {
         case .smile: return CGPoint(x: width * 1 / 2, y: height * 4 / 5)
         case .neutral: return CGPoint(x: width * 1 / 2, y: height * 58 / 75)
         case .frown: return CGPoint(x: width * 1 / 2, y: height * 23 / 30)
-        case .thinking: return CGPoint(x: width * 17 / 30, y: height * 56 / 75)
+        case .thinking: return CGPoint(x: width * 17 / 30, y: height * 39 / 50)
         }
     }
 }

@@ -11,19 +11,25 @@ public struct FaceAnimationRepresentable: UIViewRepresentable {
     
     public var frame: CGRect
     public var faceImageName: String
+    public var color: UIColor
     public var startAnimation: FaceAnimation?
     
-    public init(frame: CGRect, faceImageName: String, startAnimation: FaceAnimation? = nil) {
+    public init(frame: CGRect, faceImageName: String, color: UIColor, startAnimation: FaceAnimation? = nil) {
         self.frame = frame
         self.faceImageName = faceImageName
+        self.color = color
         self.startAnimation = startAnimation
     }
     
     public func makeUIView(context: Context) -> FaceAnimationView {
-        FaceAnimationView(
+        let faceAnimationView = FaceAnimationView(
             frame: frame,
             faceImageName: faceImageName,
             startAnimation: startAnimation)
+        
+        faceAnimationView.tintColor = color
+        
+        return faceAnimationView
     }
     
     public func updateUIView(_ uiView: FaceAnimationView, context: Context) {

@@ -9,9 +9,15 @@ import SwiftUI
 
 public struct FaceAnimationRepresentable: UIViewRepresentable {
     
-    @State public var frame: CGRect
-    @State public var faceImageName: String
-    @State public var startAnimation: FaceAnimation?
+    public var frame: CGRect
+    public var faceImageName: String
+    public var startAnimation: FaceAnimation?
+    
+//    public init(frame: CGRect, faceImageName: String, startAnimation: FaceAnimation? = nil) {
+//        self.frame = frame
+//        self.faceImageName = faceImageName
+//        self.startAnimation = startAnimation
+//    }
     
     public func makeUIView(context: Context) -> FaceAnimationView {
         FaceAnimationView(

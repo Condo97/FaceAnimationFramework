@@ -104,6 +104,7 @@ open class FaceAnimationView: UIView {
             backgroundFaceImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: backgroundFaceImageSize))
         }
         
+//        backgroundFaceLayer.path = originalBackgroundFacePath.cgPath
         backgroundFaceLayer.contents = tintedBackgroundFaceImage.cgImage
         
     }

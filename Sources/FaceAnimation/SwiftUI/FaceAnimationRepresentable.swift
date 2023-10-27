@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  FaceAnimationRepresentable.swift
 //  
 //
 //  Created by Alex Coundouriotis on 10/26/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SwiftUIView: UIViewRepresentable {
+struct FaceAnimationRepresentable: UIViewRepresentable {
     
     @State var frame: CGRect
     @State var faceImageName: String
@@ -28,7 +28,7 @@ struct SwiftUIView: UIViewRepresentable {
 
 //#Preview {
 //    ZStack {
-//        SwiftUIView(
+//        FaceAnimationRepresentable(
 //            frame: CGRect(x: 0, y: 0, width: 200, height: 200),
 //            faceImageName: "face_background.png",
 //            startAnimation: CenterFaceAnimation(duration: 0.0)

@@ -13,11 +13,11 @@ public struct FaceAnimationRepresentable: UIViewRepresentable {
     public var faceImageName: String
     public var startAnimation: FaceAnimation?
     
-//    public init(frame: CGRect, faceImageName: String, startAnimation: FaceAnimation? = nil) {
-//        self.frame = frame
-//        self.faceImageName = faceImageName
-//        self.startAnimation = startAnimation
-//    }
+    public init(frame: CGRect, faceImageName: String, startAnimation: FaceAnimation? = nil) {
+        self.frame = frame
+        self.faceImageName = faceImageName
+        self.startAnimation = startAnimation
+    }
     
     public func makeUIView(context: Context) -> FaceAnimationView {
         FaceAnimationView(

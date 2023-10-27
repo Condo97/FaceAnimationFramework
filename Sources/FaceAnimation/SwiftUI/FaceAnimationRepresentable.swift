@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FaceAnimationRepresentable: UIViewRepresentable {
+public struct FaceAnimationRepresentable: UIViewRepresentable {
     
     @State var frame: CGRect
     @State var faceImageName: String

@@ -119,7 +119,7 @@ open class FaceAnimationView: UIView {
 //        noseShapeLayer.lineCap = .round
 //        noseShapeLayer.lineJoin = .round
         noseImage = UIImage(named: noseImageName!)
-        let noseImageSize = CGSize(width: self.bounds.width, height: self.bounds.height)
+        let noseImageSize = CGSize(width: self.bounds.width / facialFeaturesScaleFactor, height: self.bounds.height / facialFeaturesScaleFactor) // Dividing by facialFeaturesScaleFactor to size the nose to the background frame
         let noseImageRenderer = UIGraphicsImageRenderer(size: noseImageSize)
         let tintedNoseImage = noseImageRenderer.image {graphicsImageRendererContext in
             noseImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: noseImageSize))
@@ -319,7 +319,7 @@ open class FaceAnimationView: UIView {
 //        originalNosePath.addLine(to: CGPoint(x: facialFeaturesView.frame.width * 13 / 30, y: facialFeaturesView.frame.height * 49 / 75))
 //        
 //        noseShapeLayer.path = originalNosePath.cgPath
-        noseLayer.frame = self.frame
+        noseLayer.frame = facialFeaturesView.frame
         noseLayer.position = CGPoint.zero
         noseLayer.anchorPoint = CGPoint.zero
         

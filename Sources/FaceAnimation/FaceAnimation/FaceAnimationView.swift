@@ -319,7 +319,7 @@ open class FaceAnimationView: UIView {
 //        originalNosePath.addLine(to: CGPoint(x: facialFeaturesView.frame.width * 13 / 30, y: facialFeaturesView.frame.height * 49 / 75))
 //        
 //        noseShapeLayer.path = originalNosePath.cgPath
-        noseLayer.frame = facialFeaturesView.frame
+        noseLayer.frame = self.frame
         noseLayer.position = CGPoint.zero
         noseLayer.anchorPoint = CGPoint.zero
         

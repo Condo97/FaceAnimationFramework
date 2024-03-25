@@ -12,10 +12,14 @@ open class FaceAnimationView: UIView {
     
     public var faceImageName: String?
     
+    public var facialFeaturesScaleFactor: CGFloat!
+    
     private let DEFAULT_BLINK_MIN_X_SCALE = 0.8
     private let DEFAULT_BLINK_MIN_Y_SCALE = 0.2
     
     private var fullFaceLayer: CALayer!
+    
+    private var facialFeaturesLayer: CALayer!
     
     private var leftEyebrowShapeLayer: CAShapeLayer!
     private var rightEyebrowShapeLayer: CAShapeLayer!
@@ -44,9 +48,10 @@ open class FaceAnimationView: UIView {
     private var idleAnimations: [FaceAnimation] = []
     private var interruptAnimations: [FaceAnimation]?
     
-    convenience public init(frame: CGRect, faceImageName: String, startAnimation: FaceAnimation? = nil) {
+    convenience public init(frame: CGRect, faceImageName: String, facialFeaturesScaleFactor: CGFloat = 1.0, startAnimation: FaceAnimation? = nil) {
         self.init(frame: frame)
         self.faceImageName = faceImageName
+        self.facialFeaturesScaleFactor = facialFeaturesScaleFactor
         setupFaceLayers()
         setupFacePaths()
         
@@ -242,7 +247,7 @@ open class FaceAnimationView: UIView {
         
         backgroundFaceLayer = CALayer()
         
-        let facialFeaturesLayer = CALayer()
+        facialFeaturesLayer = CALayer()
         
         facialFeaturesLayer.addSublayer(mouthShapeLayer)
         facialFeaturesLayer.addSublayer(noseShapeLayer)

@@ -264,6 +264,11 @@ open class FaceAnimationView: UIView {
             height: facialFeaturesLayer.frame.size.height * facialFeaturesScaleFactor)
         
         self.layer.addSublayer(fullFaceLayer)
+        
+        print("VALUES")
+        print(self.frame.size.width)
+        print(facialFeaturesLayer.frame.size.width)
+        print(fullFaceLayer.frame.size.width)
     }
     
     private func setupFacePaths() {

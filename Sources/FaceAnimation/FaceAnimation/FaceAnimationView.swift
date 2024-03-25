@@ -259,6 +259,10 @@ open class FaceAnimationView: UIView {
         fullFaceLayer.addSublayer(backgroundFaceLayer)
         fullFaceLayer.addSublayer(facialFeaturesLayer)
         
+        facialFeaturesLayer.frame.size = CGSize(
+            width: facialFeaturesLayer.frame.size.width * facialFeaturesScaleFactor,
+            height: facialFeaturesLayer.frame.size.height * facialFeaturesScaleFactor)
+        
         self.layer.addSublayer(fullFaceLayer)
     }
     

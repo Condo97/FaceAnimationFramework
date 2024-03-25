@@ -242,13 +242,17 @@ open class FaceAnimationView: UIView {
         
         backgroundFaceLayer = CALayer()
         
+        let facialFeaturesLayer = CALayer()
+        
+        facialFeaturesLayer.addSublayer(mouthShapeLayer)
+        facialFeaturesLayer.addSublayer(noseShapeLayer)
+        facialFeaturesLayer.addSublayer(eyesLayer)
+        facialFeaturesLayer.addSublayer(eyebrowsLayer)
+        
         fullFaceLayer = CALayer()
         
         fullFaceLayer.addSublayer(backgroundFaceLayer)
-        fullFaceLayer.addSublayer(mouthShapeLayer)
-        fullFaceLayer.addSublayer(noseShapeLayer)
-        fullFaceLayer.addSublayer(eyesLayer)
-        fullFaceLayer.addSublayer(eyebrowsLayer)
+        fullFaceLayer.addSublayer(facialFeaturesLayer)
         
         self.layer.addSublayer(fullFaceLayer)
     }

@@ -273,9 +273,9 @@ open class FaceAnimationView: UIView {
         facialFeaturesLayer.addSublayer(eyebrowsLayer)
         
         fullFaceLayer = CALayer()
-        
-        fullFaceLayer.addSublayer(backgroundFaceLayer)
-        fullFaceLayer.addSublayer(facialFeaturesLayer)
+//        
+//        fullFaceLayer.addSublayer(backgroundFaceLayer)
+//        fullFaceLayer.addSublayer(facialFeaturesLayer)
         
         self.layer.addSublayer(backgroundFaceLayer)
         self.facialFeaturesView.layer.addSublayer(facialFeaturesLayer)
@@ -404,8 +404,8 @@ open class FaceAnimationView: UIView {
             
             DispatchQueue.main.async {
                 let path = UIBezierPath()
-                path.move(to: lineAnimation.getLinePosition(width: self.frame.width, height: self.frame.height))
-                path.addQuadCurve(to: lineAnimation.getQuadCurvePoint(width: self.frame.width, height: self.frame.height), controlPoint: lineAnimation.getQuadCurveControlPoint(width: self.frame.width, height: self.frame.height))
+                path.move(to: lineAnimation.getLinePosition(width: self.facialFeaturesView.frame.width, height: self.facialFeaturesView.frame.height))
+                path.addQuadCurve(to: lineAnimation.getQuadCurvePoint(width: self.facialFeaturesView.frame.width, height: self.facialFeaturesView.frame.height), controlPoint: lineAnimation.getQuadCurveControlPoint(width: self.facialFeaturesView.frame.width, height: self.facialFeaturesView.frame.height))
                 
                 animation.values = [shapeLayer.path!, path.cgPath]
                 animation.keyTimes = [0, 1]

@@ -122,7 +122,7 @@ open class FaceAnimationView: UIView {
         let noseImageSize = CGSize(width: self.bounds.width, height: self.bounds.height)
         let noseImageRenderer = UIGraphicsImageRenderer(size: noseImageSize)
         let tintedNoseImage = noseImageRenderer.image {graphicsImageRendererContext in
-            noseImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: backgroundFaceImageSize))
+            noseImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: noseImageSize))
         }
         
         noseLayer.contents = tintedNoseImage.cgImage

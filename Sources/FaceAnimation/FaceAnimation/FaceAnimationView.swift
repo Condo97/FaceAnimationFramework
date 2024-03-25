@@ -281,7 +281,7 @@ open class FaceAnimationView: UIView {
         facialFeaturesLayer = CALayer()
         
         facialFeaturesLayer.addSublayer(mouthShapeLayer)
-        facialFeaturesLayer.addSublayer(noseLayer)
+//        facialFeaturesLayer.addSublayer(noseLayer)
         facialFeaturesLayer.addSublayer(eyesLayer)
         facialFeaturesLayer.addSublayer(eyebrowsLayer)
         
@@ -289,6 +289,8 @@ open class FaceAnimationView: UIView {
 //        
 //        fullFaceLayer.addSublayer(backgroundFaceLayer)
 //        fullFaceLayer.addSublayer(facialFeaturesLayer)
+        
+        backgroundFaceLayer.addSublayer(noseLayer)
         
         self.layer.addSublayer(backgroundFaceLayer)
         self.facialFeaturesView.layer.addSublayer(facialFeaturesLayer)

@@ -48,6 +48,24 @@ open class FaceAnimationView: UIView {
     private var idleAnimations: [FaceAnimation] = []
     private var interruptAnimations: [FaceAnimation]?
     
+    var fullFaceFrame: CGRect {
+        self.frame
+    }
+    
+    var facialFeaturesFrame: CGRect {
+        let newWidth = self.frame.size.width * facialFeaturesScaleFactor
+        let newHeight = self.frame.size.height * facialFeaturesScaleFactor
+        
+        let widthDifference = self.frame.size.width - newWidth
+        let heightDifference = self.frame.size.height - newHeight
+        
+        return CGRect(
+            x: widthDifference / 2,
+            y: heightDifference / 2,
+            width: newWidth,
+            height: newHeight)
+    }
+    
     convenience public init(frame: CGRect, faceImageName: String, facialFeaturesScaleFactor: CGFloat = 1.0, startAnimation: FaceAnimation? = nil) {
         self.init(frame: frame)
         self.faceImageName = faceImageName
@@ -73,12 +91,12 @@ open class FaceAnimationView: UIView {
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        leftEyebrowShapeLayer.lineWidth = self.frame.width * 2 / 75
+        leftEyebrowShapeLayer.lineWidth = facialFeaturesFrame.width * 2 / 75
         leftEyebrowShapeLayer.strokeColor = tintColor.cgColor
         leftEyebrowShapeLayer.fillColor = UIColor.clear.cgColor
         leftEyebrowShapeLayer.lineCap = .round
         
-        rightEyebrowShapeLayer.lineWidth = self.frame.width * 2 / 75
+        rightEyebrowShapeLayer.lineWidth = facialFeaturesFrame.width * 2 / 75
         rightEyebrowShapeLayer.strokeColor = tintColor.cgColor
         rightEyebrowShapeLayer.fillColor = UIColor.clear.cgColor
         rightEyebrowShapeLayer.lineCap = .round
@@ -93,13 +111,13 @@ open class FaceAnimationView: UIView {
         
         noseShapeLayer.strokeColor = tintColor.cgColor
         noseShapeLayer.fillColor = UIColor.clear.cgColor
-        noseShapeLayer.lineWidth = self.frame.width * 2 / 75
+        noseShapeLayer.lineWidth = facialFeaturesFrame.width * 2 / 75
         noseShapeLayer.lineCap = .round
         noseShapeLayer.lineJoin = .round
         
         mouthShapeLayer.strokeColor = tintColor.cgColor
         mouthShapeLayer.fillColor = UIColor.clear.cgColor
-        mouthShapeLayer.lineWidth = self.frame.width * 2 / 75
+        mouthShapeLayer.lineWidth = facialFeaturesFrame.width * 2 / 75
         mouthShapeLayer.lineCap = .round
         
         backgroundFaceImage = UIImage(named: faceImageName!)
@@ -259,49 +277,40 @@ open class FaceAnimationView: UIView {
         fullFaceLayer.addSublayer(backgroundFaceLayer)
         fullFaceLayer.addSublayer(facialFeaturesLayer)
         
-        facialFeaturesLayer.frame.size = CGSize(
-            width: facialFeaturesLayer.frame.size.width * facialFeaturesScaleFactor,
-            height: facialFeaturesLayer.frame.size.height * facialFeaturesScaleFactor)
-        
         self.layer.addSublayer(fullFaceLayer)
-        
-        print("VALUES")
-        print(self.frame.size.width)
-        print(facialFeaturesLayer.frame.size.width)
-        print(fullFaceLayer.frame.size.width)
     }
     
     private func setupFacePaths() {
         let leftEyebrowShapeLayerPath = UIBezierPath()
-        leftEyebrowShapeLayerPath.move(to: CGPoint(x: self.frame.width * 22 / 75, y: self.frame.height * 13 / 30))
-        leftEyebrowShapeLayerPath.addQuadCurve(to: CGPoint(x: self.frame.width * 59 / 150, y: self.frame.height * 13 / 30), controlPoint: CGPoint(x: self.frame.width * 103 / 300, y: self.frame.height * 32 / 75))
+        leftEyebrowShapeLayerPath.move(to: CGPoint(x: facialFeaturesFrame.width * 22 / 75, y: facialFeaturesFrame.height * 13 / 30))
+        leftEyebrowShapeLayerPath.addQuadCurve(to: CGPoint(x: facialFeaturesFrame.width * 59 / 150, y: facialFeaturesFrame.height * 13 / 30), controlPoint: CGPoint(x: facialFeaturesFrame.width * 103 / 300, y: facialFeaturesFrame.height * 32 / 75))
         
         leftEyebrowShapeLayer.path = leftEyebrowShapeLayerPath.cgPath
         
         let rightEyebrowShapeLayerPath = UIBezierPath()
-        rightEyebrowShapeLayerPath.move(to: CGPoint(x: self.frame.width * 91 / 150, y: self.frame.height * 13 / 30))
-        rightEyebrowShapeLayerPath.addQuadCurve(to: CGPoint(x: self.frame.width * 53 / 75, y: self.frame.height * 13 / 30), controlPoint: CGPoint(x: self.frame.width * 197 / 300, y: self.frame.height * 32 / 75))
+        rightEyebrowShapeLayerPath.move(to: CGPoint(x: facialFeaturesFrame.width * 91 / 150, y: facialFeaturesFrame.height * 13 / 30))
+        rightEyebrowShapeLayerPath.addQuadCurve(to: CGPoint(x: facialFeaturesFrame.width * 53 / 75, y: facialFeaturesFrame.height * 13 / 30), controlPoint: CGPoint(x: facialFeaturesFrame.width * 197 / 300, y: facialFeaturesFrame.height * 32 / 75))
         
         rightEyebrowShapeLayer.path = rightEyebrowShapeLayerPath.cgPath
         
-        leftEyeShapeLayer.frame = CGRect(x: self.frame.width * 31 / 100, y: self.frame.height * 7 / 15, width: self.frame.width * 1 / 15, height: self.frame.height * 1 / 15)
+        leftEyeShapeLayer.frame = CGRect(x: facialFeaturesFrame.width * 31 / 100, y: facialFeaturesFrame.height * 7 / 15, width: facialFeaturesFrame.width * 1 / 15, height: facialFeaturesFrame.height * 1 / 15)
         leftEyeShapeLayer.path = UIBezierPath(ovalIn: leftEyeShapeLayer.frame).cgPath
         
-        rightEyeShapeLayer.frame = CGRect(x: self.frame.width * 187 / 300, y: self.frame.height * 7 / 15, width: self.frame.width * 1 / 15, height: self.frame.height * 1 / 15)
+        rightEyeShapeLayer.frame = CGRect(x: facialFeaturesFrame.width * 187 / 300, y: facialFeaturesFrame.height * 7 / 15, width: facialFeaturesFrame.width * 1 / 15, height: facialFeaturesFrame.height * 1 / 15)
         rightEyeShapeLayer.path = UIBezierPath(ovalIn: rightEyeShapeLayer.frame).cgPath
         
-        originalNosePath.move(to: CGPoint(x: self.frame.width * 1 / 2, y: self.frame.height * 77 / 150))
-        originalNosePath.addLine(to: CGPoint(x: self.frame.width * 14 / 25, y: self.frame.height * 49 / 75))
-        originalNosePath.addLine(to: CGPoint(x: self.frame.width * 13 / 30, y: self.frame.height * 49 / 75))
+        originalNosePath.move(to: CGPoint(x: facialFeaturesFrame.width * 1 / 2, y: facialFeaturesFrame.height * 77 / 150))
+        originalNosePath.addLine(to: CGPoint(x: facialFeaturesFrame.width * 14 / 25, y: facialFeaturesFrame.height * 49 / 75))
+        originalNosePath.addLine(to: CGPoint(x: facialFeaturesFrame.width * 13 / 30, y: facialFeaturesFrame.height * 49 / 75))
         
         noseShapeLayer.path = originalNosePath.cgPath
         
-        originalMouthPath.move(to: CGPoint(x: self.frame.width * 61 / 150, y: self.frame.height * 19 / 25))
-        originalMouthPath.addQuadCurve(to: CGPoint(x: self.frame.width * 89 / 150, y: self.frame.height * 19 / 25), controlPoint: CGPoint(x: self.frame.width * 1 / 2, y: self.frame.height * 58 / 75))
+        originalMouthPath.move(to: CGPoint(x: facialFeaturesFrame.width * 61 / 150, y: facialFeaturesFrame.height * 19 / 25))
+        originalMouthPath.addQuadCurve(to: CGPoint(x: facialFeaturesFrame.width * 89 / 150, y: facialFeaturesFrame.height * 19 / 25), controlPoint: CGPoint(x: facialFeaturesFrame.width * 1 / 2, y: facialFeaturesFrame.height * 58 / 75))
         
         mouthShapeLayer.path = originalMouthPath.cgPath
         
-        backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
+        backgroundFaceLayer.frame = CGRect(x: fullFaceFrame.width * 1 / 2, y: fullFaceFrame.height * 1 / 2, width: fullFaceFrame.width, height: fullFaceFrame.height)
         backgroundFaceLayer.position = CGPoint(x: 0.0, y: 0.0)
         backgroundFaceLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
 //        backgroundFaceLayer.path = originalBackgroundFacePath.cgPath

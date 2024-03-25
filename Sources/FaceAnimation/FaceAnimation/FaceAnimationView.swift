@@ -10,6 +10,8 @@ import UIKit
 
 open class FaceAnimationView: UIView {
     
+    public var showsMouth: Bool!
+    
     public var noseImageName: String?
     public var faceImageName: String?
     
@@ -69,8 +71,9 @@ open class FaceAnimationView: UIView {
         return view
     }()
     
-    convenience public init(frame: CGRect, noseImageName: String, faceImageName: String, facialFeaturesScaleFactor: CGFloat = 1.0, startAnimation: FaceAnimation? = nil) {
+    convenience public init(frame: CGRect, showsMouth: Bool, noseImageName: String, faceImageName: String, facialFeaturesScaleFactor: CGFloat = 1.0, startAnimation: FaceAnimation? = nil) {
         self.init(frame: frame)
+        self.showsMouth = showsMouth
         self.noseImageName = noseImageName
         self.faceImageName = faceImageName
         self.facialFeaturesScaleFactor = facialFeaturesScaleFactor
@@ -127,7 +130,7 @@ open class FaceAnimationView: UIView {
         
         noseLayer.contents = tintedNoseImage.cgImage
         
-        mouthShapeLayer.strokeColor = tintColor.cgColor
+        mouthShapeLayer.strokeColor = showsMouth ? tintColor.cgColor : UIColor.clear.cgColor
         mouthShapeLayer.fillColor = UIColor.clear.cgColor
         mouthShapeLayer.lineWidth = facialFeaturesView.frame.width * 2 / 75
         mouthShapeLayer.lineCap = .round

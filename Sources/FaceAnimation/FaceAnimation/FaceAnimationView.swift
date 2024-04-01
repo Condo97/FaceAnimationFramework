@@ -95,6 +95,10 @@ open class FaceAnimationView: UIView {
         super.init(coder: coder)
     }
     
+    deinit {
+        
+    }
+    
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
         
@@ -217,6 +221,8 @@ open class FaceAnimationView: UIView {
             
             // Sleep for the duration of the animation to allow the animation to complete before proceeding
             Thread.sleep(forTimeInterval: faceAnimation.duration)
+            
+            self.animationGroup.leave()
         }
         
         // Subscribe to animation group notify

@@ -217,8 +217,6 @@ open class FaceAnimationView: UIView {
             
             // Sleep for the duration of the animation to allow the animation to complete before proceeding
             Thread.sleep(forTimeInterval: faceAnimation.duration)
-            
-            self.animationGroup.leave()
         }
         
         // Subscribe to animation group notify

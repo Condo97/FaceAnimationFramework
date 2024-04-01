@@ -95,10 +95,6 @@ open class FaceAnimationView: UIView {
         super.init(coder: coder)
     }
     
-    deinit {
-        
-    }
-    
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
         

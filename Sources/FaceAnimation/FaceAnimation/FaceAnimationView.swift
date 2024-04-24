@@ -279,7 +279,6 @@ open class FaceAnimationView: UIView {
 //                self.rightEyeShapeLayer.add(xAnimation, forKey: nil)
 //                self.leftEyeShapeLayer.add(yAnimation, forKey: nil)
 //                self.rightEyeShapeLayer.add(yAnimation, forKey: nil)
-                self.eyesLayer.anchorPoint = CGPoint(x: self.eyesLayer.frame.width / 2, y: self.eyesLayer.frame.height / 2)
                 self.eyesLayer.add(xAnimation, forKey: nil)
                 self.eyesLayer.add(yAnimation, forKey: nil)
             }
@@ -298,7 +297,6 @@ open class FaceAnimationView: UIView {
 //        rightEyeShapeLayer = CAShapeLayer()
         
         eyesLayer = CALayer()
-        eyesLayer.anchorPoint = CGPoint(x: eyesLayer.frame.width / 2, y: eyesLayer.frame.height / 2)
 //        eyesLayer.addSublayer(leftEyeShapeLayer)
 //        eyesLayer.addSublayer(rightEyeShapeLayer)
         
@@ -353,7 +351,7 @@ open class FaceAnimationView: UIView {
 //        rightEyeShapeLayer.path = UIBezierPath(ovalIn: rightEyeShapeLayer.frame).cgPath
         eyesLayer.frame = self.bounds
         eyesLayer.position = CGPoint.zero
-        eyesLayer.anchorPoint = CGPoint.zero
+        eyesLayer.anchorPoint = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
         
 //        originalNosePath.move(to: CGPoint(x: facialFeaturesView.frame.width * 1 / 2, y: facialFeaturesView.frame.height * 77 / 150))
 //        originalNosePath.addLine(to: CGPoint(x: facialFeaturesView.frame.width * 14 / 25, y: facialFeaturesView.frame.height * 49 / 75))

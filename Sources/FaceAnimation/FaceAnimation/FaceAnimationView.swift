@@ -279,6 +279,7 @@ open class FaceAnimationView: UIView {
 //                self.rightEyeShapeLayer.add(xAnimation, forKey: nil)
 //                self.leftEyeShapeLayer.add(yAnimation, forKey: nil)
 //                self.rightEyeShapeLayer.add(yAnimation, forKey: nil)
+                self.eyesLayer.anchorPoint = CGPoint(x: self.eyesLayer.frame.width / 2, y: self.eyesLayer.frame.height / 2)
                 self.eyesLayer.add(xAnimation, forKey: nil)
                 self.eyesLayer.add(yAnimation, forKey: nil)
             }

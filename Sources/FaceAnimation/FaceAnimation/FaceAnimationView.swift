@@ -128,7 +128,7 @@ open class FaceAnimationView: UIView {
             eyesImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: eyesImageSize))
         }
         
-        eyesLayer.contents = eyesImage.cgImage
+        eyesLayer.contents = tintedEyesImage.cgImage
         
 //        noseShapeLayer.strokeColor = tintColor.cgColor
 //        noseShapeLayer.fillColor = UIColor.clear.cgColor
@@ -155,7 +155,7 @@ open class FaceAnimationView: UIView {
             mouthImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: mouthImageSize))
         }
         
-        mouthLayer.contents = mouthImage.cgImage
+        mouthLayer.contents = tintedMouthImage.cgImage
         
         backgroundFaceImage = UIImage(named: faceImageName!)
         let backgroundFaceImageSize = CGSize(width: self.bounds.width, height: self.bounds.height)

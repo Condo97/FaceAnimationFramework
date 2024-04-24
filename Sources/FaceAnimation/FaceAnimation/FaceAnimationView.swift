@@ -262,7 +262,7 @@ open class FaceAnimationView: UIView {
         start()
     }
     
-    public func blink(duration: CFTimeInterval = 0.2, blinkMinXScale: CGFloat = 0.8, blinkMinYScale: CGFloat = 0.2) {
+    public func blink(duration: CFTimeInterval = 0.2, blinkMinXScale: CGFloat = 1.0, blinkMinYScale: CGFloat = 0.2) {
 //        animationsQueue.async(group: animationGroup) {
             let xAnimation = CAKeyframeAnimation(keyPath: "transform.scale.x")
             let yAnimation = CAKeyframeAnimation(keyPath: "transform.scale.y")
@@ -297,6 +297,7 @@ open class FaceAnimationView: UIView {
 //        rightEyeShapeLayer = CAShapeLayer()
         
         eyesLayer = CALayer()
+        eyesLayer.anchorPoint = CGPoint(x: eyesLayer.frame.width / 2, y: eyesLayer.frame.height / 2)
 //        eyesLayer.addSublayer(leftEyeShapeLayer)
 //        eyesLayer.addSublayer(rightEyeShapeLayer)
         
@@ -322,9 +323,9 @@ open class FaceAnimationView: UIView {
 //        fullFaceLayer.addSublayer(backgroundFaceLayer)
 //        fullFaceLayer.addSublayer(facialFeaturesLayer)
         
+        backgroundFaceLayer.addSublayer(noseLayer)
         backgroundFaceLayer.addSublayer(eyesLayer)
         backgroundFaceLayer.addSublayer(mouthLayer)
-        backgroundFaceLayer.addSublayer(noseLayer)
         
         self.layer.addSublayer(backgroundFaceLayer)
         self.facialFeaturesView.layer.addSublayer(facialFeaturesLayer)

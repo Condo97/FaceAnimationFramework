@@ -268,11 +268,17 @@ open class FaceAnimationView: UIView {
             let yAnimation = CAKeyframeAnimation(keyPath: "transform.scale.y")
             xAnimation.duration = duration
             yAnimation.duration = duration
+        
+        let yMoveAnimation = CAKeyframeAnimation(keyPath: "position.y")
+        yMoveAnimation.duration = duration
 
             xAnimation.values = [1, blinkMinXScale, 1]
             xAnimation.keyTimes = [0, 0.5, 1]
             yAnimation.values = [1, blinkMinYScale, 1]
             yAnimation.keyTimes = [0, 0.5, 1]
+        
+        yMoveAnimation.values = [0, -5, 0]
+        yMoveAnimation.keyTimes = [0, 0.5, 1]
             
             DispatchQueue.main.async {
 //                self.leftEyeShapeLayer.add(xAnimation, forKey: nil)
@@ -281,6 +287,7 @@ open class FaceAnimationView: UIView {
 //                self.rightEyeShapeLayer.add(yAnimation, forKey: nil)
                 self.eyesLayer.add(xAnimation, forKey: nil)
                 self.eyesLayer.add(yAnimation, forKey: nil)
+                self.eyesLayer.add(yMoveAnimation, forKey: nil)
             }
 //        }
     }
@@ -351,7 +358,7 @@ open class FaceAnimationView: UIView {
 //        rightEyeShapeLayer.path = UIBezierPath(ovalIn: rightEyeShapeLayer.frame).cgPath
         eyesLayer.frame = self.bounds
         eyesLayer.position = CGPoint.zero
-        eyesLayer.anchorPoint = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
+        eyesLayer.anchorPoint = CGPoint.zero
         
 //        originalNosePath.move(to: CGPoint(x: facialFeaturesView.frame.width * 1 / 2, y: facialFeaturesView.frame.height * 77 / 150))
 //        originalNosePath.addLine(to: CGPoint(x: facialFeaturesView.frame.width * 14 / 25, y: facialFeaturesView.frame.height * 49 / 75))

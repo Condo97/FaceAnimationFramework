@@ -19,6 +19,8 @@ open class FaceAnimationView: UIView {
     
     public var facialFeaturesScaleFactor: CGFloat!
     
+    public var eyesPositionFactor: CGFloat!
+    
     private let DEFAULT_BLINK_MIN_X_SCALE = 0.8
     private let DEFAULT_BLINK_MIN_Y_SCALE = 0.2
     
@@ -75,7 +77,7 @@ open class FaceAnimationView: UIView {
         return view
     }()
     
-    convenience public init(frame: CGRect, eyesImageName: String, mouthImageName: String, noseImageName: String, faceImageName: String, facialFeaturesScaleFactor: CGFloat = 1.0, startAnimation: FaceAnimation? = nil) {
+    convenience public init(frame: CGRect, eyesImageName: String, mouthImageName: String, noseImageName: String, faceImageName: String, facialFeaturesScaleFactor: CGFloat = 1.0, eyesPositionFactor: CGFloat = 2.0/5.0, startAnimation: FaceAnimation? = nil) {
         self.init(frame: frame)
         self.showsMouth = showsMouth
         self.eyesImageName = eyesImageName
@@ -83,6 +85,7 @@ open class FaceAnimationView: UIView {
         self.noseImageName = noseImageName
         self.faceImageName = faceImageName
         self.facialFeaturesScaleFactor = facialFeaturesScaleFactor
+        self.eyesPositionFactor = eyesPositionFactor
         setupFaceLayers()
         setupFacePaths()
         
@@ -273,7 +276,7 @@ open class FaceAnimationView: UIView {
         let yMoveAnimation = CAKeyframeAnimation(keyPath: "position.y")
         xMoveAnimation.duration = duration
         yMoveAnimation.duration = duration
-
+        
             xAnimation.values = [1, /*blinkMinXScale*/1, 1]
             xAnimation.keyTimes = [0, 0.5, 1]
             yAnimation.values = [1, blinkMinYScale, 1]
@@ -283,7 +286,7 @@ open class FaceAnimationView: UIView {
             DispatchQueue.main.async {
                 xMoveAnimation.values = [0, 0, 0]
                 xMoveAnimation.keyTimes = [0, 0.5, 1]
-                yMoveAnimation.values = [0, 2 * self.frame.size.height / 5, 0]
+                yMoveAnimation.values = [0, self.frame.size.height * self.eyesPositionFactor, 0]
                 yMoveAnimation.keyTimes = [0, 0.5, 1]
 //                self.leftEyeShapeLayer.add(xAnimation, forKey: nil)
 //                self.rightEyeShapeLayer.add(xAnimation, forKey: nil)

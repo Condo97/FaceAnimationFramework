@@ -21,6 +21,8 @@ open class FaceAnimationView: UIView {
     
     public var eyesPositionFactor: CGFloat!
     
+    public var faceRenderingMode: UIImage.RenderingMode!
+    
     private let DEFAULT_BLINK_MIN_X_SCALE = 0.8
     private let DEFAULT_BLINK_MIN_Y_SCALE = 0.2
     
@@ -77,7 +79,7 @@ open class FaceAnimationView: UIView {
         return view
     }()
     
-    convenience public init(frame: CGRect, eyesImageName: String, mouthImageName: String, noseImageName: String, faceImageName: String, facialFeaturesScaleFactor: CGFloat = 1.0, eyesPositionFactor: CGFloat = 2.0/5.0, startAnimation: FaceAnimation? = nil) {
+    convenience public init(frame: CGRect, eyesImageName: String, mouthImageName: String, noseImageName: String, faceImageName: String, facialFeaturesScaleFactor: CGFloat /*= 1.0*/, eyesPositionFactor: CGFloat /*= 2.0/5.0*/, faceRenderingMode: UIImage.RenderingMode, startAnimation: FaceAnimation? = nil) {
         self.init(frame: frame)
         self.showsMouth = showsMouth
         self.eyesImageName = eyesImageName
@@ -86,6 +88,7 @@ open class FaceAnimationView: UIView {
         self.faceImageName = faceImageName
         self.facialFeaturesScaleFactor = facialFeaturesScaleFactor
         self.eyesPositionFactor = eyesPositionFactor
+        self.faceRenderingMode = faceRenderingMode
         setupFaceLayers()
         setupFacePaths()
         
@@ -129,7 +132,11 @@ open class FaceAnimationView: UIView {
         let eyesImageRenderer = UIGraphicsImageRenderer(size: eyesImageSize)
         let tintedEyesImage = eyesImageRenderer.image {graphicsImageRendererContext in
 //            eyesImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: eyesImageSize))
-            eyesImage!.draw(in: CGRect(origin: CGPoint.zero, size: eyesImageSize))
+            if faceRenderingMode == .alwaysOriginal || faceRenderingMode == .automatic {
+                return eyesImage!.draw(in: CGRect(origin: CGPoint.zero, size: eyesImageSize))
+            } else {
+                return eyesImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: eyesImageSize))
+            }
         }
         
         eyesLayer.contents = tintedEyesImage.cgImage
@@ -144,7 +151,11 @@ open class FaceAnimationView: UIView {
         let noseImageRenderer = UIGraphicsImageRenderer(size: noseImageSize)
         let tintedNoseImage = noseImageRenderer.image {graphicsImageRendererContext in
 //            noseImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: noseImageSize))
-            noseImage!.draw(in: CGRect(origin: CGPoint.zero, size: noseImageSize))
+            if faceRenderingMode == .alwaysOriginal || faceRenderingMode == .automatic {
+                return noseImage!.draw(in: CGRect(origin: CGPoint.zero, size: noseImageSize))
+            } else {
+                return noseImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: noseImageSize))
+            }
         }
         
         noseLayer.contents = tintedNoseImage.cgImage
@@ -158,7 +169,11 @@ open class FaceAnimationView: UIView {
         let mouthImageRenderer = UIGraphicsImageRenderer(size: mouthImageSize)
         let tintedMouthImage = mouthImageRenderer.image {graphicsImageRendererContext in
 //            mouthImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: mouthImageSize))
-            mouthImage!.draw(in: CGRect(origin: CGPoint.zero, size: mouthImageSize))
+            if faceRenderingMode == .alwaysOriginal || faceRenderingMode == .automatic {
+                return mouthImage!.draw(in: CGRect(origin: CGPoint.zero, size: mouthImageSize))
+            } else {
+                return mouthImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: mouthImageSize))
+            }
         }
         
         mouthLayer.contents = tintedMouthImage.cgImage
@@ -168,7 +183,11 @@ open class FaceAnimationView: UIView {
         let backgroundFaceImageRenderer = UIGraphicsImageRenderer(size: backgroundFaceImageSize)
         let tintedBackgroundFaceImage = backgroundFaceImageRenderer.image {graphicsImageRendererContext in
 //            backgroundFaceImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: backgroundFaceImageSize))
-            backgroundFaceImage!.draw(in: CGRect(origin: CGPoint.zero, size: backgroundFaceImageSize))
+            if faceRenderingMode == .alwaysOriginal || faceRenderingMode == .automatic {
+                return backgroundFaceImage!.draw(in: CGRect(origin: CGPoint.zero, size: backgroundFaceImageSize))
+            } else {
+                return backgroundFaceImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: backgroundFaceImageSize))
+            }
         }
         
 //        backgroundFaceLayer.path = originalBackgroundFacePath.cgPath

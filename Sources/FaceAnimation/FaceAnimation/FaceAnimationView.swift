@@ -269,7 +269,9 @@ open class FaceAnimationView: UIView {
             xAnimation.duration = duration
             yAnimation.duration = duration
         
+        let xMoveAnimation = CAKeyframeAnimation(keyPath: "position.x")
         let yMoveAnimation = CAKeyframeAnimation(keyPath: "position.y")
+        xMoveAnimation.duration = duration
         yMoveAnimation.duration = duration
 
             xAnimation.values = [1, blinkMinXScale, 1]
@@ -277,7 +279,9 @@ open class FaceAnimationView: UIView {
             yAnimation.values = [1, blinkMinYScale, 1]
             yAnimation.keyTimes = [0, 0.5, 1]
         
-        yMoveAnimation.values = [0, self.frame.size.height / 2, 0]
+        xMoveAnimation.values = [0, self.frame.size.width / 2, 0]
+        yMoveAnimation.keyTimes = [0, 0.5, 1]
+        yMoveAnimation.values = [0, 2 * self.frame.size.height / 3, 0]
         yMoveAnimation.keyTimes = [0, 0.5, 1]
             
             DispatchQueue.main.async {

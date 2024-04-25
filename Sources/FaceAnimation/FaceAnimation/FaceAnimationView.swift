@@ -276,7 +276,7 @@ open class FaceAnimationView: UIView {
 
             xAnimation.values = [1, blinkMinXScale, 1]
             xAnimation.keyTimes = [0, 0.5, 1]
-            yAnimation.values = [1, blinkMinYScale, 1]
+            yAnimation.values = [1, /*blinkMinYScale*/1, 1]
             yAnimation.keyTimes = [0, 0.5, 1]
         
             

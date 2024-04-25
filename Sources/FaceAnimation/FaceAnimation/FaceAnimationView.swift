@@ -279,12 +279,12 @@ open class FaceAnimationView: UIView {
             yAnimation.values = [1, blinkMinYScale, 1]
             yAnimation.keyTimes = [0, 0.5, 1]
         
-        xMoveAnimation.values = [0, self.frame.size.width / 2, 0]
-        yMoveAnimation.keyTimes = [0, 0.5, 1]
-        yMoveAnimation.values = [0, 2 * self.frame.size.height / 3, 0]
-        yMoveAnimation.keyTimes = [0, 0.5, 1]
             
             DispatchQueue.main.async {
+                xMoveAnimation.values = [0, self.frame.size.width / 2, 0]
+                yMoveAnimation.keyTimes = [0, 0.5, 1]
+                yMoveAnimation.values = [0, 2 * self.frame.size.height / 3, 0]
+                yMoveAnimation.keyTimes = [0, 0.5, 1]
 //                self.leftEyeShapeLayer.add(xAnimation, forKey: nil)
 //                self.rightEyeShapeLayer.add(xAnimation, forKey: nil)
 //                self.leftEyeShapeLayer.add(yAnimation, forKey: nil)

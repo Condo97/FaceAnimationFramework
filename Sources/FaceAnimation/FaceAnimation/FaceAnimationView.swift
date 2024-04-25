@@ -277,7 +277,7 @@ open class FaceAnimationView: UIView {
             yAnimation.values = [1, blinkMinYScale, 1]
             yAnimation.keyTimes = [0, 0.5, 1]
         
-        yMoveAnimation.values = [0, -5, 0]
+        yMoveAnimation.values = [0, self.frame.size.height / 2, 0]
         yMoveAnimation.keyTimes = [0, 0.5, 1]
             
             DispatchQueue.main.async {

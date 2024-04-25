@@ -283,7 +283,7 @@ open class FaceAnimationView: UIView {
             DispatchQueue.main.async {
                 xMoveAnimation.values = [0, self.frame.size.width, 0]
                 yMoveAnimation.keyTimes = [0, 0.5, 1]
-                yMoveAnimation.values = [0, self.frame.size.height / 3, 0]
+                yMoveAnimation.values = [0, 2 * self.frame.size.height / 5, 0]
                 yMoveAnimation.keyTimes = [0, 0.5, 1]
 //                self.leftEyeShapeLayer.add(xAnimation, forKey: nil)
 //                self.rightEyeShapeLayer.add(xAnimation, forKey: nil)
@@ -291,6 +291,7 @@ open class FaceAnimationView: UIView {
 //                self.rightEyeShapeLayer.add(yAnimation, forKey: nil)
                 self.eyesLayer.add(xAnimation, forKey: nil)
                 self.eyesLayer.add(yAnimation, forKey: nil)
+                self.eyesLayer.add(xMoveAnimation, forKey: nil)
                 self.eyesLayer.add(yMoveAnimation, forKey: nil)
             }
 //        }
@@ -323,7 +324,7 @@ open class FaceAnimationView: UIView {
         
         facialFeaturesLayer = CALayer()
 //        
-        facialFeaturesLayer.addSublayer(mouthLayer)
+//        facialFeaturesLayer.addSublayer(mouthLayer)
 //        facialFeaturesLayer.addSublayer(noseLayer)
 //        facialFeaturesLayer.addSublayer(eyesLayer)
 //        facialFeaturesLayer.addSublayer(eyebrowsLayer)

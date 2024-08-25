@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol MoveCurveAnimation: Equatable {
-    var moveToQuadCurvePoint: CGPoint { get set }
-    var moveToQuadCurveControlPoint: CGPoint { get set }
+public struct MoveCurveAnimation: Equatable {
+    var moveToQuadCurvePoint: CGPoint
+    var moveToQuadCurveControlPoint: CGPoint
 }

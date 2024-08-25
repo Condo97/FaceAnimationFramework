@@ -49,10 +49,10 @@ open class FaceAnimationView: UIView {
     private var willNotifyEmpty = false
     private var isRunning = false
     
-    private var idleAnimations: [any FaceAnimation] = []
-    private var interruptAnimations: [any FaceAnimation]?
+    private var idleAnimations: [FaceAnimation] = []
+    private var interruptAnimations: [FaceAnimation]?
     
-    convenience public init(frame: CGRect, eyesImageName: String, mouthImageName: String, noseImageName: String, faceImageName: String, facialFeaturesScaleFactor: CGFloat /*= 1.0*/, eyesPositionFactor: CGFloat /*= 2.0/5.0*/, faceRenderingMode: UIImage.RenderingMode, startAnimation: (any FaceAnimation)? = nil) {
+    convenience public init(frame: CGRect, eyesImageName: String, mouthImageName: String, noseImageName: String, faceImageName: String, facialFeaturesScaleFactor: CGFloat /*= 1.0*/, eyesPositionFactor: CGFloat /*= 2.0/5.0*/, faceRenderingMode: UIImage.RenderingMode, startAnimation: FaceAnimation? = nil) {
         self.init(frame: frame)
         self.showsMouth = showsMouth
         self.eyesImageName = eyesImageName

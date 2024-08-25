@@ -7,9 +7,9 @@
 
 import Foundation
 
-public enum FacialFeatureAnimationType {
-    case curve(any MoveCurveAnimation)
-    case blink(any BlinkAnimation)
-    case linear(any MoveAnimation)
-    case opacity(any OpacityAnimation)
+public enum FacialFeatureAnimationType: Equatable {
+    case curve(MoveCurveAnimation)
+    case blink(BlinkAnimation)
+    case linear(MoveAnimation)
+    case opacity(OpacityAnimation)
 }

@@ -25,6 +25,10 @@ extension FaceAnimationRepository {
             duration: duration)
     }
     
+    public static func waitAnimation(duration: CFTimeInterval) -> FaceAnimation {
+        FaceAnimation(duration: duration)
+    }
+    
     
     public static let zeroPositionMoveAnimation = MoveAnimation(moveToPosition: CGPoint(x: 0, y: 0))
     

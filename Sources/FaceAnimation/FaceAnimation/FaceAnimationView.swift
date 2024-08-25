@@ -1,8 +1,8 @@
 //
-//  FaceAnimationView.swift
-//  FaceAnimationTest
+// FaceAnimationView.swift
+// FaceAnimationTest
 //
-//  Created by Alex Coundouriotis on 9/9/23.
+// Created by Alex Coundouriotis on 9/9/23.
 //
 
 import Foundation
@@ -30,21 +30,12 @@ open class FaceAnimationView: UIView {
     
     private var facialFeaturesLayer: CALayer!
     
-//    private var leftEyebrowShapeLayer: CAShapeLayer!
-//    private var rightEyebrowShapeLayer: CAShapeLayer!
-//    private var eyebrowsLayer: CALayer!
-    
-//    private var leftEyeShapeLayer: CAShapeLayer!
-//    private var rightEyeShapeLayer: CAShapeLayer!
     private var eyesLayer: CALayer!
     private var eyesImage: UIImage!
     
-//    private var originalNosePath: UIBezierPath!
-//    private var noseShapeLayer: CAShapeLayer!
     private var noseLayer: CALayer!
     private var noseImage: UIImage!
     
-//    private var originalMouthPath: UIBezierPath!
     private var mouthLayer: CALayer!
     private var mouthImage: UIImage!
     
@@ -62,20 +53,8 @@ open class FaceAnimationView: UIView {
     private var interruptAnimations: [FaceAnimation]?
     
     private lazy var facialFeaturesView: UIView = {
-        let newWidth = self.frame.size.width * facialFeaturesScaleFactor
-        let newHeight = self.frame.size.height * facialFeaturesScaleFactor
-        
-        let widthDifference = self.frame.size.width - newWidth
-        let heightDifference = self.frame.size.height - newHeight
-        
-        let view = UIView(frame: CGRect(
-            x: widthDifference / 2,
-            y: heightDifference / 2,
-            width: newWidth,
-            height: newHeight))
-        
+        let view = UIView(frame: CGRect.zero)
         self.addSubview(view)
-        
         return view
     }()
     
@@ -99,7 +78,6 @@ open class FaceAnimationView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
     }
     
     required public init?(coder: NSCoder) {
@@ -109,66 +87,48 @@ open class FaceAnimationView: UIView {
     open override func layoutSubviews() {
         super.layoutSubviews()
         
-        backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
-        backgroundFaceLayer.position = CGPoint(x: 0.0, y: 0.0)
-        backgroundFaceLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        // Efficiently update layer frames instead of recreating them
+        updateLayerFrames()
     }
     
+    private func updateLayerFrames() {
+        let newSize = CGSize(width: self.bounds.width * facialFeaturesScaleFactor,
+                             height: self.bounds.height * facialFeaturesScaleFactor)
+
+        eyesLayer.frame = CGRect(origin: .zero, size: newSize)
+        noseLayer.frame = CGRect(origin: .zero, size: newSize)
+        mouthLayer.frame = CGRect(origin: .zero, size: newSize)
+        backgroundFaceLayer.frame = CGRect(origin: .zero, size: self.bounds.size)
+    }
+
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        eyesImage = UIImage(named: eyesImageName!)
-        let eyesImageSize = CGSize(width: self.bounds.width, height: self.bounds.height)
-        let eyesImageRenderer = UIGraphicsImageRenderer(size: eyesImageSize)
-        let tintedEyesImage = eyesImageRenderer.image {graphicsImageRendererContext in
-            if faceRenderingMode == .alwaysOriginal || faceRenderingMode == .automatic {
-                return eyesImage!.draw(in: CGRect(origin: CGPoint.zero, size: eyesImageSize))
-            } else {
-                return eyesImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: eyesImageSize))
-            }
+        // Efficiently update images instead of drawing every time
+        updateImages()
+    }
+    
+    private func updateImages() {
+        eyesLayer.contents = createTintedImage(named: eyesImageName)
+        noseLayer.contents = createTintedImage(named: noseImageName)
+        mouthLayer.contents = createTintedImage(named: mouthImageName)
+        backgroundFaceLayer.contents = createTintedImage(named: faceImageName)
+    }
+    
+    private func createTintedImage(named imageName: String?) -> CGImage? {
+        guard let imageName = imageName,
+              let image = UIImage(named: imageName) else {
+            return nil
         }
         
-        eyesLayer.contents = tintedEyesImage.cgImage
-        
-        noseImage = UIImage(named: noseImageName!)
-        let noseImageSize = CGSize(width: self.bounds.width, height: self.bounds.height)
-        let noseImageRenderer = UIGraphicsImageRenderer(size: noseImageSize)
-        let tintedNoseImage = noseImageRenderer.image {graphicsImageRendererContext in
+        let renderer = UIGraphicsImageRenderer(size: self.bounds.size)
+        return renderer.image { context in
             if faceRenderingMode == .alwaysOriginal || faceRenderingMode == .automatic {
-                return noseImage!.draw(in: CGRect(origin: CGPoint.zero, size: noseImageSize))
+                image.draw(in: context.format.bounds)
             } else {
-                return noseImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: noseImageSize))
+                image.withTintColor(self.tintColor).draw(in: context.format.bounds)
             }
-        }
-        
-        noseLayer.contents = tintedNoseImage.cgImage
-        
-        mouthImage = UIImage(named: mouthImageName!)
-        let mouthImageSize = CGSize(width: self.bounds.width, height: self.bounds.height)
-        let mouthImageRenderer = UIGraphicsImageRenderer(size: mouthImageSize)
-        let tintedMouthImage = mouthImageRenderer.image {graphicsImageRendererContext in
-            if faceRenderingMode == .alwaysOriginal || faceRenderingMode == .automatic {
-                return mouthImage!.draw(in: CGRect(origin: CGPoint.zero, size: mouthImageSize))
-            } else {
-                return mouthImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: mouthImageSize))
-            }
-        }
-        
-        mouthLayer.contents = tintedMouthImage.cgImage
-        
-        backgroundFaceImage = UIImage(named: faceImageName!)
-        let backgroundFaceImageSize = CGSize(width: self.bounds.width, height: self.bounds.height)
-        let backgroundFaceImageRenderer = UIGraphicsImageRenderer(size: backgroundFaceImageSize)
-        let tintedBackgroundFaceImage = backgroundFaceImageRenderer.image {graphicsImageRendererContext in
-            if faceRenderingMode == .alwaysOriginal || faceRenderingMode == .automatic {
-                return backgroundFaceImage!.draw(in: CGRect(origin: CGPoint.zero, size: backgroundFaceImageSize))
-            } else {
-                return backgroundFaceImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: backgroundFaceImageSize))
-            }
-        }
-        
-        backgroundFaceLayer.contents = tintedBackgroundFaceImage.cgImage
-        
+        }.cgImage
     }
     
     public func async(faceAnimations: [FaceAnimation]) {
@@ -254,38 +214,27 @@ open class FaceAnimationView: UIView {
     }
     
     public func blink(duration: CFTimeInterval = 0.2, blinkMinXScale: CGFloat = 1.0, blinkMinYScale: CGFloat = 0.2) {
-//        animationsQueue.async(group: animationGroup) {
-            let xAnimation = CAKeyframeAnimation(keyPath: "transform.scale.x")
-            let yAnimation = CAKeyframeAnimation(keyPath: "transform.scale.y")
-            xAnimation.duration = duration
-            yAnimation.duration = duration
+        let xAnimation = CAKeyframeAnimation(keyPath: "transform.scale.x")
+        let yAnimation = CAKeyframeAnimation(keyPath: "transform.scale.y")
+        xAnimation.duration = duration
+        yAnimation.duration = duration
         
         let xMoveAnimation = CAKeyframeAnimation(keyPath: "position.x")
         let yMoveAnimation = CAKeyframeAnimation(keyPath: "position.y")
         xMoveAnimation.duration = duration
         yMoveAnimation.duration = duration
-        
-            xAnimation.values = [1, /*blinkMinXScale*/1, 1]
-            xAnimation.keyTimes = [0, 0.5, 1]
-            yAnimation.values = [1, blinkMinYScale, 1]
-            yAnimation.keyTimes = [0, 0.5, 1]
-        
+
+        DispatchQueue.main.async {
+            xMoveAnimation.values = [0, 0, 0]
+            xMoveAnimation.keyTimes = [0, 0.5, 1]
+            yMoveAnimation.values = [0, self.frame.size.height * self.eyesPositionFactor, 0]
+            yMoveAnimation.keyTimes = [0, 0.5, 1]
             
-            DispatchQueue.main.async {
-                xMoveAnimation.values = [0, 0, 0]
-                xMoveAnimation.keyTimes = [0, 0.5, 1]
-                yMoveAnimation.values = [0, self.frame.size.height * self.eyesPositionFactor, 0]
-                yMoveAnimation.keyTimes = [0, 0.5, 1]
-//                self.leftEyeShapeLayer.add(xAnimation, forKey: nil)
-//                self.rightEyeShapeLayer.add(xAnimation, forKey: nil)
-//                self.leftEyeShapeLayer.add(yAnimation, forKey: nil)
-//                self.rightEyeShapeLayer.add(yAnimation, forKey: nil)
-                self.eyesLayer.add(xAnimation, forKey: nil)
-                self.eyesLayer.add(yAnimation, forKey: nil)
-                self.eyesLayer.add(xMoveAnimation, forKey: nil)
-                self.eyesLayer.add(yMoveAnimation, forKey: nil)
-            }
-//        }
+            self.eyesLayer.add(xAnimation, forKey: nil)
+            self.eyesLayer.add(yAnimation, forKey: nil)
+            self.eyesLayer.add(xMoveAnimation, forKey: nil)
+            self.eyesLayer.add(yMoveAnimation, forKey: nil)
+        }
     }
     
     private func setupFaceLayers() {
@@ -309,21 +258,7 @@ open class FaceAnimationView: UIView {
     }
     
     private func setupFacePaths() {
-        eyesLayer.frame = self.bounds
-        eyesLayer.position = CGPoint.zero
-        eyesLayer.anchorPoint = CGPoint.zero
-        
-        noseLayer.frame = self.bounds
-        noseLayer.position = CGPoint.zero
-        noseLayer.anchorPoint = CGPoint.zero
-        
-        mouthLayer.frame = self.bounds
-        mouthLayer.position = .zero
-        mouthLayer.anchorPoint = .zero
-        
-//        backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
-//        backgroundFaceLayer.position = CGPoint(x: 0.0, y: 0.0)
-//        backgroundFaceLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        updateLayerFrames()  // Calls a new method to update frames
     }
     
     private func start() {
@@ -355,11 +290,11 @@ open class FaceAnimationView: UIView {
         // Set willNotifyEmpty to true
         willNotifyEmpty = true
         
+        // Set isRunning to true to indicate that animations are running
         isRunning = true
         animationGroup.notify(queue: animationsQueue) {
             // Set isRunning to false since the queue is empty
             self.isRunning = false
-            print("hi")
             
             // Set shouldEmptyQueue to false, as this block indicates the queue has been emptied
             self.shouldEmptyQueue = false
@@ -381,7 +316,6 @@ open class FaceAnimationView: UIView {
             path.move(to: layer.position)
             path.addQuadCurve(to: moveCurveAnimation.moveToQuadCurvePoint, controlPoint: moveCurveAnimation.moveToQuadCurveControlPoint)
             
-//            animation.values = [layer.position, moveAnimation.moveToPosition]
             animation.path = path.cgPath
             animation.keyTimes = [0, 1]
             animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
@@ -417,7 +351,7 @@ open class FaceAnimationView: UIView {
                 
                 animation.values = [shapeLayer.path!, path.cgPath]
                 animation.keyTimes = [0, 1]
-            
+                
                 shapeLayer.path = path.cgPath
                 shapeLayer.add(animation, forKey: nil)
             }
@@ -427,11 +361,7 @@ open class FaceAnimationView: UIView {
             let blinkMinXScale: CGFloat = blinkAnimation.blinkMinXScale ?? DEFAULT_BLINK_MIN_X_SCALE
             let blinkMinYScale: CGFloat = blinkAnimation.blinkMinYScale ?? DEFAULT_BLINK_MIN_Y_SCALE
             
-            blink(
-                duration: duration,
-                blinkMinXScale: blinkMinXScale,
-                blinkMinYScale: blinkMinYScale
-            )
+            blink(duration: duration, blinkMinXScale: blinkMinXScale, blinkMinYScale: blinkMinYScale)
         }
         
         if let opacityAnimation = facialFeatureAnimation as? OpacityAnimation {

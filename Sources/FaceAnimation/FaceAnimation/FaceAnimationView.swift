@@ -221,6 +221,10 @@ open class FaceAnimationView: UIView {
         start()
     }
     
+    public func getIdleAnimations() -> [FaceAnimation] {
+        idleAnimations
+    }
+    
     public func blink(duration: CFTimeInterval = 0.2, blinkMinXScale: CGFloat = 1.0, blinkMinYScale: CGFloat = 0.2) {
             let xAnimation = CAKeyframeAnimation(keyPath: "transform.scale.x")
             let yAnimation = CAKeyframeAnimation(keyPath: "transform.scale.y")

@@ -109,6 +109,14 @@ open class FaceAnimationView: UIView {
     open override func layoutSubviews() {
         super.layoutSubviews()
         
+        backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
+        backgroundFaceLayer.position = CGPoint(x: 0.0, y: 0.0)
+        backgroundFaceLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+    }
+    
+    open override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
         eyesImage = UIImage(named: eyesImageName!)
         let eyesImageSize = CGSize(width: self.bounds.width, height: self.bounds.height)
         let eyesImageRenderer = UIGraphicsImageRenderer(size: eyesImageSize)
@@ -160,62 +168,6 @@ open class FaceAnimationView: UIView {
         }
         
         backgroundFaceLayer.contents = tintedBackgroundFaceImage.cgImage
-    }
-    
-    open override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
-//        eyesImage = UIImage(named: eyesImageName!)
-//        let eyesImageSize = CGSize(width: self.bounds.width, height: self.bounds.height)
-//        let eyesImageRenderer = UIGraphicsImageRenderer(size: eyesImageSize)
-//        let tintedEyesImage = eyesImageRenderer.image {graphicsImageRendererContext in
-//            if faceRenderingMode == .alwaysOriginal || faceRenderingMode == .automatic {
-//                return eyesImage!.draw(in: CGRect(origin: CGPoint.zero, size: eyesImageSize))
-//            } else {
-//                return eyesImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: eyesImageSize))
-//            }
-//        }
-//        
-//        eyesLayer.contents = tintedEyesImage.cgImage
-//        
-//        noseImage = UIImage(named: noseImageName!)
-//        let noseImageSize = CGSize(width: self.bounds.width, height: self.bounds.height)
-//        let noseImageRenderer = UIGraphicsImageRenderer(size: noseImageSize)
-//        let tintedNoseImage = noseImageRenderer.image {graphicsImageRendererContext in
-//            if faceRenderingMode == .alwaysOriginal || faceRenderingMode == .automatic {
-//                return noseImage!.draw(in: CGRect(origin: CGPoint.zero, size: noseImageSize))
-//            } else {
-//                return noseImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: noseImageSize))
-//            }
-//        }
-//        
-//        noseLayer.contents = tintedNoseImage.cgImage
-//        
-//        mouthImage = UIImage(named: mouthImageName!)
-//        let mouthImageSize = CGSize(width: self.bounds.width, height: self.bounds.height)
-//        let mouthImageRenderer = UIGraphicsImageRenderer(size: mouthImageSize)
-//        let tintedMouthImage = mouthImageRenderer.image {graphicsImageRendererContext in
-//            if faceRenderingMode == .alwaysOriginal || faceRenderingMode == .automatic {
-//                return mouthImage!.draw(in: CGRect(origin: CGPoint.zero, size: mouthImageSize))
-//            } else {
-//                return mouthImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: mouthImageSize))
-//            }
-//        }
-//        
-//        mouthLayer.contents = tintedMouthImage.cgImage
-//        
-//        backgroundFaceImage = UIImage(named: faceImageName!)
-//        let backgroundFaceImageSize = CGSize(width: self.bounds.width, height: self.bounds.height)
-//        let backgroundFaceImageRenderer = UIGraphicsImageRenderer(size: backgroundFaceImageSize)
-//        let tintedBackgroundFaceImage = backgroundFaceImageRenderer.image {graphicsImageRendererContext in
-//            if faceRenderingMode == .alwaysOriginal || faceRenderingMode == .automatic {
-//                return backgroundFaceImage!.draw(in: CGRect(origin: CGPoint.zero, size: backgroundFaceImageSize))
-//            } else {
-//                return backgroundFaceImage!.withTintColor(self.tintColor).draw(in: CGRect(origin: CGPoint.zero, size: backgroundFaceImageSize))
-//            }
-//        }
-//        
-//        backgroundFaceLayer.contents = tintedBackgroundFaceImage.cgImage
         
     }
     
@@ -369,9 +321,9 @@ open class FaceAnimationView: UIView {
         mouthLayer.position = .zero
         mouthLayer.anchorPoint = .zero
         
-        backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
-        backgroundFaceLayer.position = CGPoint(x: 0.0, y: 0.0)
-        backgroundFaceLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+//        backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
+//        backgroundFaceLayer.position = CGPoint(x: 0.0, y: 0.0)
+//        backgroundFaceLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
     }
     
     private func start() {

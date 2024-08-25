@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol MoveAnimation: Equatable {
-    var moveToPosition: CGPoint { get }
+public struct MoveAnimation: Equatable {
+    var moveToPosition: CGPoint
 }

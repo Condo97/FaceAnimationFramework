@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol OpacityAnimation: Equatable {
-    var targetOpacity: Float { get }
+public struct OpacityAnimation: Equatable {
+    var targetOpacity: Float
 }

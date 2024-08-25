@@ -7,12 +7,12 @@
 
 import Foundation
 
-public protocol FaceAnimation {
-    var eyebrowsAnimation: FacialFeatureAnimationType? { get }
-    var eyesAnimation: FacialFeatureAnimationType? { get }
-    var noseAnimation: FacialFeatureAnimationType? { get }
-    var mouthAnimation: FacialFeatureAnimationType? { get }
-    var backgroundAnimation: FacialFeatureAnimationType? { get }
+public struct FaceAnimation: Equatable {
+    var eyebrowsAnimation: FacialFeatureAnimationType?
+    var eyesAnimation: FacialFeatureAnimationType?
+    var noseAnimation: FacialFeatureAnimationType?
+    var mouthAnimation: FacialFeatureAnimationType?
+    var backgroundAnimation: FacialFeatureAnimationType?
     
-    var duration: CFTimeInterval { get }
+    var duration: CFTimeInterval
 }

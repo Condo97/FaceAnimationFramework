@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol BlinkAnimation: Equatable {
-    var blinkMinXScale: CGFloat? { get }
-    var blinkMinYScale: CGFloat? { get }
+public struct BlinkAnimation: Equatable {
+    var blinkMinXScale: CGFloat?
+    var blinkMinYScale: CGFloat?
 }

@@ -107,12 +107,14 @@ open class FaceAnimationView: UIView {
         super.init(coder: coder)
     }
     
-    open override func layoutSubviews() {
-        setupFacePaths()
-    }
+//    open override func layoutSubviews() {
+//        setupFacePaths()
+//    }
     
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
+        
+        setupFacePaths()
         
 //        leftEyebrowShapeLayer.lineWidth = facialFeaturesView.frame.width * 2 / 75
 //        leftEyebrowShapeLayer.strokeColor = tintColor.cgColor

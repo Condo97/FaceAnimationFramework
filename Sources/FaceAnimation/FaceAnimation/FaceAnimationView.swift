@@ -90,7 +90,7 @@ open class FaceAnimationView: UIView {
         self.eyesPositionFactor = eyesPositionFactor
         self.faceRenderingMode = faceRenderingMode
         setupFaceLayers()
-        setupFacePaths()
+//        setupFacePaths()
         
         if let startAnimation = startAnimation {
             self.queue(faceAnimation: startAnimation)
@@ -105,6 +105,10 @@ open class FaceAnimationView: UIView {
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    open override func layoutSubviews() {
+        setupFacePaths()
     }
     
     open override func draw(_ rect: CGRect) {

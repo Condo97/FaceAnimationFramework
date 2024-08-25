@@ -13,20 +13,20 @@ public struct FaceAnimationRepository {
 
 extension FaceAnimationRepository {
     
-    var blinkFaceAnimation: FaceAnimation {
+    public static var blinkFaceAnimation: FaceAnimation {
         FaceAnimation(
             eyesAnimation: .blink(BlinkAnimation()),
             duration: 0.2)
     }
     
-    func centerFaceAnimation(duration: CFTimeInterval) -> FaceAnimation {
+    public static func centerFaceAnimation(duration: CFTimeInterval) -> FaceAnimation {
         FaceAnimation.fullFaceAnimation(
-            withLinearAnimation: FaceAnimationRepository.zeroPositionMoveAnimation,
+            withLinearAnimation: zeroPositionMoveAnimation,
             duration: duration)
     }
     
     
-    private static let zeroPositionMoveAnimation = MoveAnimation(moveToPosition: CGPoint(x: 0, y: 0))
+    public static let zeroPositionMoveAnimation = MoveAnimation(moveToPosition: CGPoint(x: 0, y: 0))
     
 }
 

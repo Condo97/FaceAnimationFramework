@@ -109,9 +109,7 @@ open class FaceAnimationView: UIView {
     open override func layoutSubviews() {
         super.layoutSubviews()
         
-        backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
-        backgroundFaceLayer.position = CGPoint(x: 0.0, y: 0.0)
-        backgroundFaceLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        setupFacePaths()
     }
     
     open override func draw(_ rect: CGRect) {
@@ -321,9 +319,9 @@ open class FaceAnimationView: UIView {
         mouthLayer.position = .zero
         mouthLayer.anchorPoint = .zero
         
-//        backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
-//        backgroundFaceLayer.position = CGPoint(x: 0.0, y: 0.0)
-//        backgroundFaceLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
+        backgroundFaceLayer.position = CGPoint(x: 0.0, y: 0.0)
+        backgroundFaceLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
     }
     
     private func start() {

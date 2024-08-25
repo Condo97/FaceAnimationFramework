@@ -8,6 +8,6 @@
 import Foundation
 
 public struct MoveCurveAnimation: Equatable {
-    var moveToQuadCurvePoint: CGPoint
-    var moveToQuadCurveControlPoint: CGPoint
+    public var moveToQuadCurvePoint: CGPoint
+    public var moveToQuadCurveControlPoint: CGPoint
 }

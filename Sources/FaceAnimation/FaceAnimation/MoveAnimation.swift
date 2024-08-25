@@ -8,5 +8,5 @@
 import Foundation
 
 public struct MoveAnimation: Equatable {
-    var moveToPosition: CGPoint
+    public var moveToPosition: CGPoint
 }

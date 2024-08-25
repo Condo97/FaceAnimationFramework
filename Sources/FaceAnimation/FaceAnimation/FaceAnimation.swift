@@ -8,11 +8,11 @@
 import Foundation
 
 public struct FaceAnimation: Equatable {
-    var eyebrowsAnimation: FacialFeatureAnimationType?
-    var eyesAnimation: FacialFeatureAnimationType?
-    var noseAnimation: FacialFeatureAnimationType?
-    var mouthAnimation: FacialFeatureAnimationType?
-    var backgroundAnimation: FacialFeatureAnimationType?
+    public var eyebrowsAnimation: FacialFeatureAnimationType?
+    public var eyesAnimation: FacialFeatureAnimationType?
+    public var noseAnimation: FacialFeatureAnimationType?
+    public var mouthAnimation: FacialFeatureAnimationType?
+    public var backgroundAnimation: FacialFeatureAnimationType?
     
-    var duration: CFTimeInterval
+    public var duration: CFTimeInterval
 }

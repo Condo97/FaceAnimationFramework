@@ -21,30 +21,30 @@ public protocol FullFaceMoveCurveAnimation: FaceAnimation {
 
 public extension FullFaceMoveCurveAnimation {
     
-    var eyebrowsAnimation: FacialFeatureAnimation? {
-        MoveCurve(moveToQuadCurvePoint: moveToQuadCurvePoint, moveToQuadCurveControlPoint: moveToQuadCurveControlPoint)
+    var eyebrowsAnimation: FacialFeatureAnimationType? {
+        .curve(MoveCurve(moveToQuadCurvePoint: moveToQuadCurvePoint, moveToQuadCurveControlPoint: moveToQuadCurveControlPoint))
     }
     
-    var eyesAnimation: FacialFeatureAnimation? {
-        MoveCurve(moveToQuadCurvePoint: moveToQuadCurvePoint, moveToQuadCurveControlPoint: moveToQuadCurveControlPoint)
+    var eyesAnimation: FacialFeatureAnimationType? {
+        .curve(MoveCurve(moveToQuadCurvePoint: moveToQuadCurvePoint, moveToQuadCurveControlPoint: moveToQuadCurveControlPoint))
     }
     
-    var noseAnimation: FacialFeatureAnimation? {
+    var noseAnimation: FacialFeatureAnimationType? {
         let newMoveToQuadCurvePoint = CGPoint(x: moveToQuadCurvePoint.x / 2, y: moveToQuadCurvePoint.y / 2)
         let newMoveToQuadCurveControlPoint = CGPoint(x: moveToQuadCurveControlPoint.x / 2, y: moveToQuadCurveControlPoint.y / 2)
-        return MoveCurve(moveToQuadCurvePoint: newMoveToQuadCurvePoint, moveToQuadCurveControlPoint: newMoveToQuadCurveControlPoint)
+        return .curve(MoveCurve(moveToQuadCurvePoint: newMoveToQuadCurvePoint, moveToQuadCurveControlPoint: newMoveToQuadCurveControlPoint))
     }
     
-    var mouthAnimation: FacialFeatureAnimation? {
+    var mouthAnimation: FacialFeatureAnimationType? {
         let newMoveToQuadCurvePoint = CGPoint(x: moveToQuadCurvePoint.x / 2, y: moveToQuadCurvePoint.y / 2)
         let newMoveToQuadCurveControlPoint = CGPoint(x: moveToQuadCurveControlPoint.x / 2, y: moveToQuadCurveControlPoint.y / 2)
-        return MoveCurve(moveToQuadCurvePoint: newMoveToQuadCurvePoint, moveToQuadCurveControlPoint: newMoveToQuadCurveControlPoint)
+        return .curve(MoveCurve(moveToQuadCurvePoint: newMoveToQuadCurvePoint, moveToQuadCurveControlPoint: newMoveToQuadCurveControlPoint))
     }
     
-    var backgroundAnimation: FacialFeatureAnimation? {
+    var backgroundAnimation: FacialFeatureAnimationType? {
         let newMoveToQuadCurvePoint = CGPoint(x: moveToQuadCurvePoint.x / 4, y: moveToQuadCurvePoint.y / 4)
         let newMoveToQuadCurveControlPoint = CGPoint(x: moveToQuadCurveControlPoint.x / 4, y: moveToQuadCurveControlPoint.y / 4)
-        return MoveCurve(moveToQuadCurvePoint: newMoveToQuadCurvePoint, moveToQuadCurveControlPoint: newMoveToQuadCurveControlPoint)
+        return .curve(MoveCurve(moveToQuadCurvePoint: newMoveToQuadCurvePoint, moveToQuadCurveControlPoint: newMoveToQuadCurveControlPoint))
     }
     
 }

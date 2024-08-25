@@ -49,28 +49,10 @@ open class FaceAnimationView: UIView {
     private var willNotifyEmpty = false
     private var isRunning = false
     
-    private var idleAnimations: [FaceAnimation] = []
-    private var interruptAnimations: [FaceAnimation]?
+    private var idleAnimations: [any FaceAnimation] = []
+    private var interruptAnimations: [any FaceAnimation]?
     
-//    private lazy var facialFeaturesView: UIView = {
-//        let newWidth = self.frame.size.width * facialFeaturesScaleFactor
-//        let newHeight = self.frame.size.height * facialFeaturesScaleFactor
-//        
-//        let widthDifference = self.frame.size.width - newWidth
-//        let heightDifference = self.frame.size.height - newHeight
-//        
-//        let view = UIView(frame: CGRect(
-//            x: widthDifference / 2,
-//            y: heightDifference / 2,
-//            width: newWidth,
-//            height: newHeight))
-//        
-//        self.addSubview(view)
-//        
-//        return view
-//    }()
-    
-    convenience public init(frame: CGRect, eyesImageName: String, mouthImageName: String, noseImageName: String, faceImageName: String, facialFeaturesScaleFactor: CGFloat /*= 1.0*/, eyesPositionFactor: CGFloat /*= 2.0/5.0*/, faceRenderingMode: UIImage.RenderingMode, startAnimation: FaceAnimation? = nil) {
+    convenience public init(frame: CGRect, eyesImageName: String, mouthImageName: String, noseImageName: String, faceImageName: String, facialFeaturesScaleFactor: CGFloat /*= 1.0*/, eyesPositionFactor: CGFloat /*= 2.0/5.0*/, faceRenderingMode: UIImage.RenderingMode, startAnimation: (any FaceAnimation)? = nil) {
         self.init(frame: frame)
         self.showsMouth = showsMouth
         self.eyesImageName = eyesImageName
@@ -178,9 +160,6 @@ open class FaceAnimationView: UIView {
         if let mouthAnimation = faceAnimation.mouthAnimation {
             self.animate(facialFeatureAnimation: mouthAnimation, layer: self.mouthLayer, duration: faceAnimation.duration)
         }
-        if let mouthPosition = faceAnimation.mouthPosition {
-            self.animate(facialFeatureAnimation: mouthPosition, layer: self.mouthLayer, duration: faceAnimation.duration)
-        }
         if let backgroundAnimation = faceAnimation.backgroundAnimation {
             self.animate(facialFeatureAnimation: backgroundAnimation, layer: self.backgroundFaceLayer, duration: faceAnimation.duration)
         }
@@ -243,7 +222,6 @@ open class FaceAnimationView: UIView {
     }
     
     public func blink(duration: CFTimeInterval = 0.2, blinkMinXScale: CGFloat = 1.0, blinkMinYScale: CGFloat = 0.2) {
-//        animationsQueue.async(group: animationGroup) {
             let xAnimation = CAKeyframeAnimation(keyPath: "transform.scale.x")
             let yAnimation = CAKeyframeAnimation(keyPath: "transform.scale.y")
             xAnimation.duration = duration
@@ -265,10 +243,6 @@ open class FaceAnimationView: UIView {
                 xMoveAnimation.keyTimes = [0, 0.5, 1]
                 yMoveAnimation.values = [0, self.frame.size.height * self.eyesPositionFactor, 0]
                 yMoveAnimation.keyTimes = [0, 0.5, 1]
-//                self.leftEyeShapeLayer.add(xAnimation, forKey: nil)
-//                self.rightEyeShapeLayer.add(xAnimation, forKey: nil)
-//                self.leftEyeShapeLayer.add(yAnimation, forKey: nil)
-//                self.rightEyeShapeLayer.add(yAnimation, forKey: nil)
                 self.eyesLayer.add(xAnimation, forKey: nil)
                 self.eyesLayer.add(yAnimation, forKey: nil)
                 self.eyesLayer.add(xMoveAnimation, forKey: nil)
@@ -285,8 +259,6 @@ open class FaceAnimationView: UIView {
         
         backgroundFaceLayer = CALayer()
         
-//        facialFeaturesLayer = CALayer()
-        
         fullFaceLayer = CALayer()
         
         backgroundFaceLayer.addSublayer(noseLayer)
@@ -294,7 +266,6 @@ open class FaceAnimationView: UIView {
         backgroundFaceLayer.addSublayer(mouthLayer)
         
         self.layer.addSublayer(backgroundFaceLayer)
-//        self.facialFeaturesView.layer.addSublayer(facialFeaturesLayer)
     }
     
     private func setupFacePaths() {
@@ -361,8 +332,18 @@ open class FaceAnimationView: UIView {
         }
     }
     
-    private func animate(facialFeatureAnimation: FacialFeatureAnimation, layer: CALayer, duration: CFTimeInterval) {
-        if let moveCurveAnimation = facialFeatureAnimation as? MoveCurveAnimation {
+    private func animate(facialFeatureAnimation: FacialFeatureAnimationType, layer: CALayer, duration: CFTimeInterval) {
+        switch facialFeatureAnimation {
+        case .blink(let blinkAnimation):
+            let blinkMinXScale: CGFloat = blinkAnimation.blinkMinXScale ?? DEFAULT_BLINK_MIN_X_SCALE
+            let blinkMinYScale: CGFloat = blinkAnimation.blinkMinYScale ?? DEFAULT_BLINK_MIN_Y_SCALE
+            
+            blink(
+                duration: duration,
+                blinkMinXScale: blinkMinXScale,
+                blinkMinYScale: blinkMinYScale
+            )
+        case .curve(let moveCurveAnimation):
             let animation = CAKeyframeAnimation(keyPath: "position")
             animation.duration = duration
             
@@ -379,9 +360,7 @@ open class FaceAnimationView: UIView {
                 layer.position = moveCurveAnimation.moveToQuadCurvePoint
                 layer.add(animation, forKey: nil)
             }
-        }
-        
-        if let moveAnimation = facialFeatureAnimation as? MoveAnimation {
+        case .linear(let moveAnimation):
             let animation = CAKeyframeAnimation(keyPath: "position")
             animation.duration = duration
             
@@ -393,37 +372,7 @@ open class FaceAnimationView: UIView {
                 layer.position = moveAnimation.moveToPosition
                 layer.add(animation, forKey: nil)
             }
-        }
-        
-//        if let lineAnimation = facialFeatureAnimation as? LineAnimation, let shapeLayer = layer as? CAShapeLayer {
-//            let animation = CAKeyframeAnimation(keyPath: "path")
-//            animation.duration = duration
-//            
-//            DispatchQueue.main.async {
-//                let path = UIBezierPath()
-//                path.move(to: lineAnimation.getLinePosition(width: self.facialFeaturesView.frame.width, height: self.facialFeaturesView.frame.height))
-//                path.addQuadCurve(to: lineAnimation.getQuadCurvePoint(width: self.facialFeaturesView.frame.width, height: self.facialFeaturesView.frame.height), controlPoint: lineAnimation.getQuadCurveControlPoint(width: self.facialFeaturesView.frame.width, height: self.facialFeaturesView.frame.height))
-//                
-//                animation.values = [shapeLayer.path!, path.cgPath]
-//                animation.keyTimes = [0, 1]
-//            
-//                shapeLayer.path = path.cgPath
-//                shapeLayer.add(animation, forKey: nil)
-//            }
-//        }
-        
-        if let blinkAnimation = facialFeatureAnimation as? BlinkAnimation {
-            let blinkMinXScale: CGFloat = blinkAnimation.blinkMinXScale ?? DEFAULT_BLINK_MIN_X_SCALE
-            let blinkMinYScale: CGFloat = blinkAnimation.blinkMinYScale ?? DEFAULT_BLINK_MIN_Y_SCALE
-            
-            blink(
-                duration: duration,
-                blinkMinXScale: blinkMinXScale,
-                blinkMinYScale: blinkMinYScale
-            )
-        }
-        
-        if let opacityAnimation = facialFeatureAnimation as? OpacityAnimation {
+        case .opacity(let opacityAnimation):
             let animation = CAKeyframeAnimation(keyPath: "opacity")
             animation.duration = duration
             

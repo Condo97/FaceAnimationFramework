@@ -19,27 +19,27 @@ public protocol FullFaceMoveAnimation: FaceAnimation {
 
 public extension FullFaceMoveAnimation {
     
-    var eyebrowsAnimation: FacialFeatureAnimation? {
-        Move(moveToPosition: moveToPosition)
+    var eyebrowsAnimation: FacialFeatureAnimationType? {
+        .linear(Move(moveToPosition: moveToPosition))
     }
     
-    var eyesAnimation: FacialFeatureAnimation? {
-        Move(moveToPosition: moveToPosition)
+    var eyesAnimation: FacialFeatureAnimationType? {
+        .linear(Move(moveToPosition: moveToPosition))
     }
     
-    var noseAnimation: FacialFeatureAnimation? {
+    var noseAnimation: FacialFeatureAnimationType? {
         let newMoveToPosition = CGPoint(x: moveToPosition.x / 2, y: moveToPosition.y / 2)
-        return Move(moveToPosition: newMoveToPosition)
+        return .linear(Move(moveToPosition: newMoveToPosition))
     }
     
-    var mouthAnimation: FacialFeatureAnimation? {
+    var mouthAnimation: FacialFeatureAnimationType? {
         let newMoveToPosition = CGPoint(x: moveToPosition.x / 4, y: moveToPosition.y / 4)
-        return Move(moveToPosition: newMoveToPosition)
+        return .linear(Move(moveToPosition: newMoveToPosition))
     }
     
-    var backgroundAnimation: FacialFeatureAnimation? {
+    var backgroundAnimation: FacialFeatureAnimationType? {
         let newMoveToPosition = CGPoint(x: moveToPosition.x / 4, y: moveToPosition.y / 4)
-        return Move(moveToPosition: newMoveToPosition)
+        return .linear(Move(moveToPosition: newMoveToPosition))
     }
     
 }

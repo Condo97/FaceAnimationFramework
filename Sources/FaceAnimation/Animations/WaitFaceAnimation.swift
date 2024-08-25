@@ -8,13 +8,11 @@
 import Foundation
 
 public struct WaitFaceAnimation: FaceAnimation {
-    public var eyebrowsAnimation: FacialFeatureAnimation?
-    public var eyebrowsPosition: EyebrowsPositions?
-    public var eyesAnimation: FacialFeatureAnimation?
-    public var noseAnimation: FacialFeatureAnimation?
-    public var mouthAnimation: FacialFeatureAnimation?
-    public var mouthPosition: MouthPositions?
-    public var backgroundAnimation: FacialFeatureAnimation?
+    public var eyebrowsAnimation: FacialFeatureAnimationType?
+    public var eyesAnimation: FacialFeatureAnimationType?
+    public var noseAnimation: FacialFeatureAnimationType?
+    public var mouthAnimation: FacialFeatureAnimationType?
+    public var backgroundAnimation: FacialFeatureAnimationType?
     
     public var duration: CFTimeInterval
     

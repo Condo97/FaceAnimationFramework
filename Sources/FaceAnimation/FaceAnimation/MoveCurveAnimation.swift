@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol MoveCurveAnimation: FacialFeatureAnimation {
+public protocol MoveCurveAnimation: Equatable {
     var moveToQuadCurvePoint: CGPoint { get set }
     var moveToQuadCurveControlPoint: CGPoint { get set }
 }

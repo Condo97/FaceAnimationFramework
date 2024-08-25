@@ -12,13 +12,11 @@ public struct CenterFaceAnimation: FaceAnimation {
         public var moveToPosition: CGPoint = CGPoint(x: 0, y: 0)
     }
     
-    public var eyebrowsAnimation: FacialFeatureAnimation? = ZeroPositionMoveAnimation()
-    public var eyebrowsPosition: EyebrowsPositions? = .dismissed
-    public var eyesAnimation: FacialFeatureAnimation? = ZeroPositionMoveAnimation()
-    public var noseAnimation: FacialFeatureAnimation? = ZeroPositionMoveAnimation()
-    public var mouthAnimation: FacialFeatureAnimation? = ZeroPositionMoveAnimation()
-    public var mouthPosition: MouthPositions? = .neutral
-    public var backgroundAnimation: FacialFeatureAnimation? = ZeroPositionMoveAnimation()
+    public var eyebrowsAnimation: FacialFeatureAnimationType? = .linear(ZeroPositionMoveAnimation())
+    public var eyesAnimation: FacialFeatureAnimationType? = .linear(ZeroPositionMoveAnimation())
+    public var noseAnimation: FacialFeatureAnimationType? = .linear(ZeroPositionMoveAnimation())
+    public var mouthAnimation: FacialFeatureAnimationType? = .linear(ZeroPositionMoveAnimation())
+    public var backgroundAnimation: FacialFeatureAnimationType? = .linear(ZeroPositionMoveAnimation())
     
     public var duration: CFTimeInterval
     

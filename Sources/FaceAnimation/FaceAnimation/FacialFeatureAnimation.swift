@@ -1,12 +1,12 @@
+////
+////  FacialFeatureAnimation.swift
+////  FaceAnimationTest
+////
+////  Created by Alex Coundouriotis on 9/8/23.
+////
 //
-//  FacialFeatureAnimation.swift
-//  FaceAnimationTest
+//import Foundation
 //
-//  Created by Alex Coundouriotis on 9/8/23.
-//
-
-import Foundation
-
-public protocol FacialFeatureAnimation {
-    
-}
+//public protocol FacialFeatureAnimation {
+//    var type: FacialFeatureAnimationType { get }
+//}

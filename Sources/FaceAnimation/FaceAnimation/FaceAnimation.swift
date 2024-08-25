@@ -8,13 +8,11 @@
 import Foundation
 
 public protocol FaceAnimation {
-    var eyebrowsAnimation: FacialFeatureAnimation? { get }
-    var eyebrowsPosition: EyebrowsPositions? { get }
-    var eyesAnimation: FacialFeatureAnimation? { get }
-    var noseAnimation: FacialFeatureAnimation? { get }
-    var mouthAnimation: FacialFeatureAnimation? { get }
-    var mouthPosition: MouthPositions? { get }
-    var backgroundAnimation: FacialFeatureAnimation? { get }
+    var eyebrowsAnimation: FacialFeatureAnimationType? { get }
+    var eyesAnimation: FacialFeatureAnimationType? { get }
+    var noseAnimation: FacialFeatureAnimationType? { get }
+    var mouthAnimation: FacialFeatureAnimationType? { get }
+    var backgroundAnimation: FacialFeatureAnimationType? { get }
     
     var duration: CFTimeInterval { get }
 }

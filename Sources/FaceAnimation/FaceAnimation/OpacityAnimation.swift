@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol OpacityAnimation {
+public protocol OpacityAnimation: Equatable {
     var targetOpacity: Float { get }
 }

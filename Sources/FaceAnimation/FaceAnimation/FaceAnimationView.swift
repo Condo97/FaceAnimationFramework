@@ -90,7 +90,7 @@ open class FaceAnimationView: UIView {
         self.eyesPositionFactor = eyesPositionFactor
         self.faceRenderingMode = faceRenderingMode
         setupFaceLayers()
-//        setupFacePaths()
+        setupFacePaths()
         
         if let startAnimation = startAnimation {
             self.queue(faceAnimation: startAnimation)
@@ -107,14 +107,25 @@ open class FaceAnimationView: UIView {
         super.init(coder: coder)
     }
     
-//    open override func layoutSubviews() {
-//        setupFacePaths()
-//    }
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+            
+        // Update the frame of sublayers based on the new bounds
+        let newWidth = self.bounds.width * facialFeaturesScaleFactor
+        let newHeight = self.bounds.height * facialFeaturesScaleFactor
+        
+        let xOffset = (self.bounds.width - newWidth) / 2
+        let yOffset = (self.bounds.height - newHeight) / 2
+        
+        eyesLayer.frame = CGRect(x: xOffset, y: yOffset, width: newWidth, height: newHeight)
+        noseLayer.frame = CGRect(x: xOffset, y: yOffset, width: newWidth, height: newHeight)
+        mouthLayer.frame = CGRect(x: xOffset, y: yOffset, width: newWidth, height: newHeight)
+        
+        backgroundFaceLayer.frame = self.bounds
+    }
     
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
-        setupFacePaths()
         
 //        leftEyebrowShapeLayer.lineWidth = facialFeaturesView.frame.width * 2 / 75
 //        leftEyebrowShapeLayer.strokeColor = tintColor.cgColor

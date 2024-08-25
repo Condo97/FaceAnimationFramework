@@ -275,19 +275,19 @@ open class FaceAnimationView: UIView {
     private func setupFacePaths() {
         backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
         backgroundFaceLayer.position = .zero
-        backgroundFaceLayer.anchorPoint = .zero
+//        backgroundFaceLayer.anchorPoint = .zero
         
         eyesLayer.frame = backgroundFaceLayer.bounds
         eyesLayer.position = CGPoint.zero
-        eyesLayer.anchorPoint = CGPoint.zero
+//        eyesLayer.anchorPoint = CGPoint.zero
         
         noseLayer.frame = backgroundFaceLayer.bounds
         noseLayer.position = CGPoint.zero
-        noseLayer.anchorPoint = CGPoint.zero
+//        noseLayer.anchorPoint = CGPoint.zero
         
         mouthLayer.frame = backgroundFaceLayer.bounds
         mouthLayer.position = .zero
-        mouthLayer.anchorPoint = .zero
+//        mouthLayer.anchorPoint = .zero
     }
     
     private func start() {

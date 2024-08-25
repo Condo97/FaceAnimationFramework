@@ -7,6 +7,16 @@
 
 import Foundation
 
+//fileprivate struct Move: MoveAnimation {
+//    var moveToPosition: CGPoint
+//}
+
+//public struct FullFaceMoveAnimation {
+//    
+//    var moveToPosition: CGPoint
+//    
+//}
+
 public extension FaceAnimation {
     
     static func fullFaceAnimation(withLinearAnimation moveAnimation: MoveAnimation, duration: CFTimeInterval) -> FaceAnimation {

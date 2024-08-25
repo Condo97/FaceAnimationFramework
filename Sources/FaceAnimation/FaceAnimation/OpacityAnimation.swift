@@ -9,4 +9,8 @@ import Foundation
 
 public struct OpacityAnimation: Equatable {
     var targetOpacity: Float
+    
+    public init(targetOpacity: Float) {
+        self.targetOpacity = targetOpacity
+    }
 }

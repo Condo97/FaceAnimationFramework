@@ -8,6 +8,11 @@
 import Foundation
 
 public struct BlinkAnimation: Equatable {
-    var blinkMinXScale: CGFloat?
-    var blinkMinYScale: CGFloat?
+    public var blinkMinXScale: CGFloat?
+    public var blinkMinYScale: CGFloat?
+    
+    public init(blinkMinXScale: CGFloat? = nil, blinkMinYScale: CGFloat? = nil) {
+        self.blinkMinXScale = blinkMinXScale
+        self.blinkMinYScale = blinkMinYScale
+    }
 }

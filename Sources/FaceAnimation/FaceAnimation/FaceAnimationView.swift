@@ -269,25 +269,30 @@ open class FaceAnimationView: UIView {
         backgroundFaceLayer.addSublayer(eyesLayer)
         backgroundFaceLayer.addSublayer(mouthLayer)
         
+        backgroundFaceLayer.anchorPoint = .zero
+        eyesLayer.anchorPoint = CGPoint.zero
+        noseLayer.anchorPoint = CGPoint.zero
+        mouthLayer.anchorPoint = .zero
+        
         self.layer.addSublayer(backgroundFaceLayer)
     }
     
     private func setupFacePaths() {
 //        backgroundFaceLayer.frame = CGRect(x: self.frame.width * 1 / 2, y: self.frame.height * 1 / 2, width: self.frame.width, height: self.frame.height)
         backgroundFaceLayer.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
-        backgroundFaceLayer.position = .zero
+//        backgroundFaceLayer.position = .zero
 //        backgroundFaceLayer.anchorPoint = .zero
         
         eyesLayer.frame = backgroundFaceLayer.bounds
-        eyesLayer.position = CGPoint.zero
+//        eyesLayer.position = CGPoint.zero
 //        eyesLayer.anchorPoint = CGPoint.zero
         
         noseLayer.frame = backgroundFaceLayer.bounds
-        noseLayer.position = CGPoint.zero
+//        noseLayer.position = CGPoint.zero
 //        noseLayer.anchorPoint = CGPoint.zero
         
         mouthLayer.frame = backgroundFaceLayer.bounds
-        mouthLayer.position = .zero
+//        mouthLayer.position = .zero
 //        mouthLayer.anchorPoint = .zero
     }
     
@@ -381,15 +386,17 @@ open class FaceAnimationView: UIView {
             let animation = CAKeyframeAnimation(keyPath: "opacity")
             animation.duration = duration
             
-            animation.values = [layer.opacity, opacityAnimation.targetOpacity]
+//            animation.values = [layer.opacity, opacityAnimation.targetOpacity]
             animation.keyTimes = [0, 1]
             
             DispatchQueue.main.async {
-                layer.opacity = opacityAnimation.targetOpacity
+//                layer.opacity = opacityAnimation.targetOpacity
                 layer.add(animation, forKey: nil)
             }
         }
     }
     
 }
+
+
 
